@@ -2,12 +2,17 @@
     <string name="app_name">LogopedieProject2</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Voornaam -->
+    <string name="Voornaamlabel">Naam: </string>
+    <string name="Voornaamplaceholder">Van Bergen</string>
+
     <!-- Naam -->
     <string name="Naamlabel">Naam: </string>
-    <string name="Naamplaceholder">Bram Van Bergen</string>
+    <string name="Naamplaceholder">Van Bergen</string>
 
     <!-- Geboortedatum -->
     <string name="Geboortedatumlabel">Geboortedatum: </string>
+    <string name="Geboortedatumplaceholder">27/08/1998</string>
 
     <!-- Testdatum -->
     <string name="Testdatumlabel">Testdatum: </string>
