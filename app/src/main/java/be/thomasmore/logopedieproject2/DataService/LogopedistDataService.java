@@ -1,0 +1,126 @@
+package be.thomasmore.logopedieproject2.DataService;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import be.thomasmore.logopedieproject2.App;
+import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.Models.Logopedist;
+
+public class LogopedistDataService {
+    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+
+    // insert Logopedist
+    public long insertLogopedist(Logopedist logopedist) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("voornaam", logopedist.getVoornaam());
+        values.put("achternaam", logopedist.getAchternaam());
+        values.put("email", logopedist.getEmail());
+        values.put("gebruikersnaam", logopedist.getGebruikersnaam());
+        values.put("wachtwoord", logopedist.getWachtwoord());
+
+        long id = db.insert("logopedist", null, values);
+
+        db.close();
+        return id;
+    }
+
+    // update Logopedist
+    public boolean updateLogopedist(Logopedist logopedist) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("voornaam", logopedist.getVoornaam());
+        values.put("achternaam", logopedist.getAchternaam());
+        values.put("email", logopedist.getEmail());
+        values.put("gebruikersnaam", logopedist.getGebruikersnaam());
+        values.put("wachtwoord", logopedist.getWachtwoord());
+
+        int numrows = db.update(
+                "logopedist",
+                values,
+                "id = ?",
+                new String[] { String.valueOf(logopedist.getId()) });
+
+        db.close();
+        return numrows > 0;
+    }
+
+    // delete Logopedist
+    public boolean deleteLogopedist(long id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        int numrows = db.delete(
+                "logopedist",
+                "id = ?",
+                new String[] { String.valueOf(id) });
+
+        db.close();
+        return numrows > 0;
+    }
+
+    // get single Logopedist
+    public Logopedist getLogopedist(long id) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                "logopedist",
+                new String[] { "id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord" },
+                "id = ?",
+                new String[] { String.valueOf(id) },
+                null,
+                null,
+                null,
+                null);
+
+        Logopedist logopedist = new Logopedist();
+
+        if (cursor.moveToFirst()) {
+            logopedist = new Logopedist(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5)
+            );
+        }
+        cursor.close();
+        db.close();
+        return logopedist;
+    }
+
+    // get list Logopedist
+    public List<Logopedist> getLogopedistList() {
+        List<Logopedist> lijst = new ArrayList<Logopedist>();
+
+        String selectQuery = "SELECT  * FROM logopedist ORDER BY id";
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Logopedist logopedist = new Logopedist(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)
+                );
+                lijst.add(logopedist);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return lijst;
+    }
+}
