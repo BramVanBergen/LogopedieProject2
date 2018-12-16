@@ -8,13 +8,142 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- Naam -->
+        <LinearLayout
+            android:id="@+id/naamLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/naamText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Naamlabel" />
+
+            <EditText
+                android:id="@+id/naam"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/Naamplaceholder" />
+        </LinearLayout>
+
+        <!-- Geboortedatum -->
+        <LinearLayout
+            android:id="@+id/geboortedatumLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/geboortedatumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Geboortedatumlabel" />
+
+            <EditText
+                android:id="@+id/geboortedatum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <DatePicker
+                android:id="@+id/geboortedatumPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+        </LinearLayout>
+
+        <!-- Testdatum -->
+        <LinearLayout
+            android:id="@+id/testdatumLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/testdatumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Testdatumlabel" />
+
+            <EditText
+                android:id="@+id/testdatum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/Testdatumplaceholder" />
+        </LinearLayout>
+
+        <!-- Chronologische leeftijd -->
+        <LinearLayout
+            android:id="@+id/chronologischeLeeftijdLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/chronologischeLeeftijdText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ChronologischeLeeftijdlabel" />
+
+            <EditText
+                android:id="@+id/chronologischeLeeftijd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/ChronologischeLeeftijdplaceholder" />
+        </LinearLayout>
+
+        <!-- Geslacht -->
+        <LinearLayout
+            android:id="@+id/geslachtLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/geslachtText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Geslachtlabel" />
+
+            <Spinner
+                android:id="@+id/geslacht"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/geslacht_arrays"
+                android:prompt="@string/geslacht_prompt" />
+        </LinearLayout>
+
+        <!-- Afasie -->
+        <LinearLayout
+            android:id="@+id/afasieLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/afasieText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/SoortAfasielabel" />
+
+            <Spinner
+                android:id="@+id/afasie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/afasie_arrays"
+                android:prompt="@string/afasie_prompt" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
