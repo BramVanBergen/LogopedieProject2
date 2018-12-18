@@ -1,4 +1,47 @@
 <resources>
     <string name="app_name">LogopedieProject2</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Voornaam -->
+    <string name="Voornaamlabel">Naam: </string>
+    <string name="Voornaamplaceholder">Bram</string>
+
+    <!-- Naam -->
+    <string name="Naamlabel">Naam: </string>
+    <string name="Naamplaceholder">Van Bergen</string>
+
+    <!-- Geboortedatum -->
+    <string name="Geboortedatumlabel">Geboortedatum: </string>
+    <string name="Geboortedatumplaceholder">27/08/1998</string>
+
+    <!-- Testdatum -->
+    <string name="Testdatumlabel">Testdatum: </string>
+    <string name="Testdatumplaceholder">11/12/2018</string>
+
+    <!-- Chronologische leeftijd -->
+    <string name="ChronologischeLeeftijdlabel">Chronologische leeftijd: </string>
+    <string name="ChronologischeLeeftijdplaceholder">20 jaar </string>
+
+    <!-- Geslacht -->
+    <string name="Geslachtlabel">Geslacht: </string>
+    <string name="geslacht_prompt">Kies een geslacht</string>
+    <string-array name="geslacht_arrays">
+        <item>Man</item>
+        <item>Vrouw</item>
+        <item>X (lol)</item>
+        <item>Apache Attack Helicopter</item>
+    </string-array>
+
+    <!-- Soort afasie -->
+    <string name="SoortAfasielabel">Soort afasie</string>
+    <string name="afasie_prompt">Kies een afasie</string>
+    <string-array name="afasie_arrays">
+        <item>afasie 1</item>
+        <item>afasie 2</item>
+        <item>Nog iets anders</item>
+        <item>Laura kakt haar eigen onder van de zattigheid</item>
+    </string-array>
+
+    <!-- Submit -->
+    <string name="ButtonSubmit">Opslaan</string>
 </resources>
