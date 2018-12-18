@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void berekenChronologischeLeeftijd() {
+
+        /*
+
         String geboortedatumtest = ((EditText) findViewById(R.id.geboortedatum)).toString();
         String testdatumtest = ((EditText) findViewById(R.id.testdatum)).toString();
         EditText chronologischeleeftijd = (EditText) findViewById(R.id.chronologischeLeeftijd);
@@ -113,16 +116,14 @@ public class MainActivity extends AppCompatActivity {
 
             chronologischeleeftijd.setText(PA.ChronologischeDatum(geboortedatumtest, testdatumtest));
         }
+
+        */
+
     }
 
+    //DATEPICKER GEBOORTEDATUM
     public void showDatePickerDialogGeboortedatum() {
         DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenerGeboortedatum, year, month, day);
-        datepicker.setTitle(getString(R.string.Geboortedatumlabel));
-        datepicker.show();
-    }
-
-    public void showDatePickerDialogTestdatum() {
-        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
         datepicker.setTitle(getString(R.string.Geboortedatumlabel));
         datepicker.show();
     }
@@ -137,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
             textViewGeboortedatum.setText(day + "/" + (month + 1) + "/" + year);
         }
     };
+
+    //DATEPICKER TESTDATUM
+    public void showDatePickerDialogTestdatum() {
+        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
+        datepicker.setTitle(getString(R.string.Geboortedatumlabel));
+        datepicker.show();
+    }
 
     private DatePickerDialog.OnDateSetListener mDateSetListenertestdatum = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int newYear, int newMonth, int newDay) {
