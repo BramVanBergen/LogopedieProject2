@@ -31,26 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private SoortAfasieDataService dbAfasie;
     private int year = calendar.get(Calendar.YEAR), month = calendar.get(Calendar.MONTH), day = calendar.get(Calendar.DATE);
 
-
+    PatientActivity PA = new PatientActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final PatientActivity PA = new PatientActivity();
-/*
-        String geboortedatumtest = ((EditText) findViewById(R.id.geboortedatum)).toString();
-        String testdatumtest = ((EditText) findViewById(R.id.testdatum)).toString();
-        EditText chronologischeleeftijd = (EditText) findViewById(R.id.chronologischeLeeftijd);
 
 
-
-        if (geboortedatumtest != null && testdatumtest != null) {
-
-           chronologischeleeftijd.setText(PA.ChronologischeDatum(geboortedatumtest, testdatumtest));
-        }*/
-/*
         //DATEPICKER GEBOORTEDATUM + SET CHRONOLOGISCHE LEEFTIJD
         final EditText geboortedatum = (EditText) findViewById(R.id.geboortedatum);
         geboortedatum.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-*/
+
         //SOORTEN AFASIE
         // Spinner Drop down elements
         dbAfasie = new SoortAfasieDataService(new DatabaseHelper(this));
@@ -111,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
                 PA.onSubmit();
             }
         });
+    }
+
+    public void berekenChronologischeLeeftijd() {
+        String geboortedatumtest = ((EditText) findViewById(R.id.geboortedatum)).toString();
+        String testdatumtest = ((EditText) findViewById(R.id.testdatum)).toString();
+        EditText chronologischeleeftijd = (EditText) findViewById(R.id.chronologischeLeeftijd);
+
+
+
+        if (geboortedatumtest != null && testdatumtest != null) {
+
+            chronologischeleeftijd.setText(PA.ChronologischeDatum(geboortedatumtest, testdatumtest));
+        }
     }
 
     public void showDatePickerDialogGeboortedatum() {

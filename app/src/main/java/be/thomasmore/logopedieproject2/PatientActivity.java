@@ -1,5 +1,6 @@
 package be.thomasmore.logopedieproject2;
 
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.Models.Score;
 
-public class PatientActivity extends MainActivity{
+public class PatientActivity extends AppCompatActivity {
     private PatientDataService dbP;
     private ScoreDataService dbS;
     String testdatumVar = "";
@@ -48,21 +49,21 @@ public class PatientActivity extends MainActivity{
     //
     //  Bereken Chronologische datum
     //
-    public String ChronologischeDatum(String geboortedatum, String testdatum) {
+    public String ChronologischeLeeftijd(String geboortedatum, String testdatum) {
         DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
-        String chronologischedatum = "";
+        String chronologischeLeeftijd = "";
 
         try {
             long difference = Math.abs(format.parse(testdatum).getTime() - format.parse(geboortedatum).getTime());
             long differenceDates = difference / (24 * 60 * 60 * 1000);
 
             //Convert long to String
-            chronologischedatum = Long.toString(differenceDates);
+            chronologischeLeeftijd = Long.toString(differenceDates);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return chronologischedatum;
+        return chronologischeLeeftijd;
     }
 
 }
