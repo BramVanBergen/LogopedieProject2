@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">LogopedieProject2</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_mondeling">Mondelinge oefening</string>
+    <string name="title_activity_schriftelijk">Schriftelijke oefening</string>
+    <string name="title_activity_nieuwe_patient">Nieuwe patiënt</string>
 
     <!-- Voornaam -->
     <string name="Voornaamlabel">Voornaam: </string>
@@ -44,5 +46,6 @@
 
     <!-- Submit -->
     <string name="ButtonSubmit">Opslaan</string>
-    <string name="title_activity_mondeling">MondelingActivity</string>
+    <string name="title_activity_schriftelijk_acitivty">SchriftelijkAcitivty</string>
+    <string name="title_activity_patient">PatientActivity</string>
 </resources>

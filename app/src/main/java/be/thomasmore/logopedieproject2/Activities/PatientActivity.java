@@ -2,7 +2,10 @@ package be.thomasmore.logopedieproject2.Activities;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,10 +17,8 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,26 +26,29 @@ import be.thomasmore.logopedieproject2.DataService.PatientDataService;
 import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DataService.SoortAfasieDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.Patient;
-import be.thomasmore.logopedieproject2.Models.Score;
 import be.thomasmore.logopedieproject2.Models.SoortAfasie;
 import be.thomasmore.logopedieproject2.R;
 
-public class PatientActivity extends AppCompatActivity {
+public class PatientActivity extends MenuActivity {
+
     private PatientDataService dbP;
     private ScoreDataService dbS;
-    public String testdatumGlobaal = "";
+    private String testdatumGlobaal = "";
 
     Calendar calendar = Calendar.getInstance();
     private SoortAfasieDataService dbAfasie;
     private int year = calendar.get(Calendar.YEAR), month = calendar.get(Calendar.MONTH), day = calendar.get(Calendar.DATE);
 
-    PatientActivity PA = new PatientActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Nieuwe patiënt");
 
         //DATEPICKER GEBOORTEDATUM + SET CHRONOLOGISCHE LEEFTIJD
         final EditText geboortedatum = (EditText) findViewById(R.id.geboortedatum);
@@ -103,7 +107,7 @@ public class PatientActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PA.onSubmit();
+                onSubmit();
             }
         });
     }
