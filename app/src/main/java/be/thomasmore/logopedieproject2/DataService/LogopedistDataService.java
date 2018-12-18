@@ -12,7 +12,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Logopedist;
 
 public class LogopedistDataService {
-    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+    private DatabaseHelper dbHelper;
+
+    public LogopedistDataService(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     // insert Logopedist
     public long insertLogopedist(Logopedist logopedist) {

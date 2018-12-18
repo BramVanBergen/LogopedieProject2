@@ -12,7 +12,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Patient;
 
 public class PatientDataService {
-    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+    private DatabaseHelper dbHelper;
+
+    public PatientDataService(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     // insert Patient
     public long insertPatient(Patient patient) {

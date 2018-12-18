@@ -11,7 +11,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Substitutiegedrag;
 
 public class SubstitutiegedragDataService {
-    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+    private DatabaseHelper dbHelper;
+
+    public SubstitutiegedragDataService(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     // get single Substitutiegedrag
     public Substitutiegedrag getSubstitutiegedrag(long id) {

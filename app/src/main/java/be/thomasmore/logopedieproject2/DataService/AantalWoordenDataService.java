@@ -12,7 +12,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.AantalWoorden;
 
 public class AantalWoordenDataService {
-    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+    private DatabaseHelper dbHelper;
+
+    public AantalWoordenDataService(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     // insert AantalWoorden
     public long insertAantalWoorden(AantalWoorden aantalWoorden) {

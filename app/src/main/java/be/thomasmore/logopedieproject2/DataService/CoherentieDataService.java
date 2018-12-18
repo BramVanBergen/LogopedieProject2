@@ -11,7 +11,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Coherentie;
 
 public class CoherentieDataService {
-    private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
+    private DatabaseHelper dbHelper;
+
+    public CoherentieDataService(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
+    }
 
     // get single Coherentie
     public Coherentie getCoherentie(long id) {
