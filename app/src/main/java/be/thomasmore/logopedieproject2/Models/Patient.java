@@ -8,8 +8,6 @@ public class Patient {
     private String achternaam;
     private String geslacht;
     private String geboortedatum;
-    private String testdatum;
-    private String chronologischedatum;
     private long soortAfasieId;
     private long logopedistId;
 
@@ -17,14 +15,12 @@ public class Patient {
 
     }
 
-    public Patient(long id, String voornaam, String achternaam, String geslacht, String geboortedatum, String testdatum, String chronologischedatum, long soortAfasieId, long logopedistId) {
+    public Patient(long id, String voornaam, String achternaam, String geslacht, String geboortedatum, long soortAfasieId, long logopedistId) {
         this.id = id;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.geslacht = geslacht;
         this.geboortedatum = geboortedatum;
-        this.testdatum = testdatum;
-        this.chronologischedatum = chronologischedatum;
         this.soortAfasieId = soortAfasieId;
         this.logopedistId = logopedistId;
     }
@@ -67,22 +63,6 @@ public class Patient {
 
     public void setGeboortedatum(String geboortedatum) {
         this.geboortedatum = geboortedatum;
-    }
-
-    public String getTestdatum() {
-        return testdatum;
-    }
-
-    public void setTestdatum(String testdatum) {
-        this.testdatum = testdatum;
-    }
-
-    public String getChronologischedatum() {
-        return chronologischedatum;
-    }
-
-    public void setChronologischedatum(String chronologischedatum) {
-        this.chronologischedatum = chronologischedatum;
     }
 
     public long getSoortAfasieId() {

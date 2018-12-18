@@ -4,7 +4,7 @@
 
     <!-- Voornaam -->
     <string name="Voornaamlabel">Naam: </string>
-    <string name="Voornaamplaceholder">Van Bergen</string>
+    <string name="Voornaamplaceholder">Bram</string>
 
     <!-- Naam -->
     <string name="Naamlabel">Naam: </string>
@@ -41,4 +41,7 @@
         <item>Nog iets anders</item>
         <item>Laura kakt haar eigen onder van de zattigheid</item>
     </string-array>
+
+    <!-- Submit -->
+    <string name="ButtonSubmit">Opslaan</string>
 </resources>

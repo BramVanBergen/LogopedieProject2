@@ -23,14 +23,14 @@
                 android:id="@+id/voornaamText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Naamlabel" />
+                android:text="@string/Voornaamlabel" />
 
             <EditText
                 android:id="@+id/voornaam"
                 android:inputType="text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/Naamplaceholder" />
+                android:hint="@string/Voornaamplaceholder" />
         </LinearLayout>
 
         <!-- Naam -->
@@ -95,10 +95,14 @@
                 android:id="@+id/testdatum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/Testdatumplaceholder" />
         </LinearLayout>
 
-        <!-- Chronologische leeftijd -->
+        <!-- Chronologische leeftijd
         <LinearLayout
             android:id="@+id/chronologischeLeeftijdLayout"
             android:layout_width="match_parent"
@@ -116,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/ChronologischeLeeftijdplaceholder" />
-        </LinearLayout>
+        </LinearLayout>-->
 
         <!-- Geslacht -->
         <LinearLayout
@@ -156,10 +160,14 @@
                 android:id="@+id/afasie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/afasie_arrays"
                 android:prompt="@string/afasie_prompt" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/buttonsubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ButtonSubmit"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
