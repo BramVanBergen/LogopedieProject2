@@ -1,5 +1,6 @@
 package be.thomasmore.logopedieproject2;
 
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -15,54 +16,56 @@ import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.Models.Score;
 
-public class PatientActivity extends MainActivity{
+public class PatientActivity extends AppCompatActivity {
     private PatientDataService dbP;
     private ScoreDataService dbS;
-    String testdatumVar = "";
+    public String testdatumGlobaal = "";
 
     //
     //  Submit
     //
     public void onSubmit() {
-        dbP = new PatientDataService();
+        dbP = new PatientDataService(new DatabaseHelper(this));
         Patient patient = new Patient();
 
         String voornaam = ((TextView) findViewById(R.id.voornaam)).getText().toString();
         String naam = ((TextView) findViewById(R.id.naam)).getText().toString();
         String geboortedatum = ((TextView) findViewById(R.id.geboortedatum)).getText().toString();
-        String testdatuminput = ((TextView) findViewById(R.id.testdatum)).getText().toString();
+        String testdatum = ((TextView) findViewById(R.id.testdatum)).getText().toString();
         Spinner geslacht = (Spinner) findViewById(R.id.geslacht);
         Spinner soortafasie = (Spinner) findViewById(R.id.afasie);
 
         patient.setVoornaam(voornaam);
         patient.setAchternaam(naam);
         patient.setGeboortedatum(geboortedatum);
-        patient.setGeslacht(geslacht.toString());
+        patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
         patient.setSoortAfasieId(soortafasie.getId());
 
-        testdatumVar = testdatuminput;
+        testdatumGlobaal = testdatum;
 
         dbP.insertPatient(patient);
+
+        dbP.getPatientList();
     }
 
     //
     //  Bereken Chronologische datum
     //
-    public String ChronologischeDatum(String geboortedatum, String testdatum) {
+    public String ChronologischeLeeftijd(String geboortedatum, String testdatum) {
         DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
-        String chronologischedatum = "";
+        String chronologischeLeeftijd = "";
 
         try {
             long difference = Math.abs(format.parse(testdatum).getTime() - format.parse(geboortedatum).getTime());
             long differenceDates = difference / (24 * 60 * 60 * 1000);
 
             //Convert long to String
-            chronologischedatum = Long.toString(differenceDates);
+            chronologischeLeeftijd = Long.toString(differenceDates);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return chronologischedatum;
+        return chronologischeLeeftijd;
     }
 
 }

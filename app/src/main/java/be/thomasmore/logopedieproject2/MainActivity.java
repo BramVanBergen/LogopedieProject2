@@ -31,26 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private SoortAfasieDataService dbAfasie;
     private int year = calendar.get(Calendar.YEAR), month = calendar.get(Calendar.MONTH), day = calendar.get(Calendar.DATE);
 
-
+    PatientActivity PA = new PatientActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final PatientActivity PA = new PatientActivity();
-/*
-        String geboortedatumtest = ((EditText) findViewById(R.id.geboortedatum)).toString();
-        String testdatumtest = ((EditText) findViewById(R.id.testdatum)).toString();
-        EditText chronologischeleeftijd = (EditText) findViewById(R.id.chronologischeLeeftijd);
 
 
-
-        if (geboortedatumtest != null && testdatumtest != null) {
-
-           chronologischeleeftijd.setText(PA.ChronologischeDatum(geboortedatumtest, testdatumtest));
-        }*/
-/*
         //DATEPICKER GEBOORTEDATUM + SET CHRONOLOGISCHE LEEFTIJD
         final EditText geboortedatum = (EditText) findViewById(R.id.geboortedatum);
         geboortedatum.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-*/
+
         //SOORTEN AFASIE
         // Spinner Drop down elements
         dbAfasie = new SoortAfasieDataService(new DatabaseHelper(this));
@@ -113,14 +102,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showDatePickerDialogGeboortedatum() {
-        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenerGeboortedatum, year, month, day);
-        datepicker.setTitle(getString(R.string.Geboortedatumlabel));
-        datepicker.show();
+    public void berekenChronologischeLeeftijd() {
+
+        /*
+
+        String geboortedatumtest = ((EditText) findViewById(R.id.geboortedatum)).toString();
+        String testdatumtest = ((EditText) findViewById(R.id.testdatum)).toString();
+        EditText chronologischeleeftijd = (EditText) findViewById(R.id.chronologischeLeeftijd);
+
+
+
+        if (geboortedatumtest != null && testdatumtest != null) {
+
+            chronologischeleeftijd.setText(PA.ChronologischeDatum(geboortedatumtest, testdatumtest));
+        }
+
+        */
+
     }
 
-    public void showDatePickerDialogTestdatum() {
-        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
+    //DATEPICKER GEBOORTEDATUM
+    public void showDatePickerDialogGeboortedatum() {
+        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenerGeboortedatum, year, month, day);
         datepicker.setTitle(getString(R.string.Geboortedatumlabel));
         datepicker.show();
     }
@@ -133,8 +136,19 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textViewGeboortedatum = (TextView) findViewById(R.id.geboortedatum);
             textViewGeboortedatum.setText(day + "/" + (month + 1) + "/" + year);
+
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DATE);
         }
     };
+
+    //DATEPICKER TESTDATUM
+    public void showDatePickerDialogTestdatum() {
+        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
+        datepicker.setTitle(getString(R.string.Geboortedatumlabel));
+        datepicker.show();
+    }
 
     private DatePickerDialog.OnDateSetListener mDateSetListenertestdatum = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int newYear, int newMonth, int newDay) {
@@ -144,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textViewTestdatum = (TextView) findViewById(R.id.testdatum);
             textViewTestdatum.setText(day + "/" + (month + 1) + "/" + year);
+
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DATE);
         }
     };
 
