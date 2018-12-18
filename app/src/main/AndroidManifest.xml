@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="be.thomasmore.logopedieproject2">
 
     <application
@@ -8,7 +9,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -24,9 +26,13 @@
             android:label="@string/title_activity_mondeling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.SchriftelijkAcitivty"
-            android:label="@string/title_activity_schriftelijk_acitivty"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".Activities.SchriftelijkActivity"
+            android:label="@string/title_activity_schriftelijk"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.PatientActivity"
+            android:label="@string/title_activity_nieuwe_patient"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -47,4 +47,5 @@
     <!-- Submit -->
     <string name="ButtonSubmit">Opslaan</string>
     <string name="title_activity_schriftelijk_acitivty">SchriftelijkAcitivty</string>
+    <string name="title_activity_patient">PatientActivity</string>
 </resources>

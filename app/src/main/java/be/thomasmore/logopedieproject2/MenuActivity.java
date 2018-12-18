@@ -1,28 +1,13 @@
 package be.thomasmore.logopedieproject2;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 import be.thomasmore.logopedieproject2.Activities.MondelingActivity;
-import be.thomasmore.logopedieproject2.Activities.SchriftelijkAcitivty;
-import be.thomasmore.logopedieproject2.DataService.SoortAfasieDataService;
-import be.thomasmore.logopedieproject2.Models.SoortAfasie;
+import be.thomasmore.logopedieproject2.Activities.PatientActivity;
+import be.thomasmore.logopedieproject2.Activities.SchriftelijkActivity;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -44,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MondelingActivity.class));
                 return true;
             case R.id.activity_schriftelijk:
-                startActivity(new Intent(this, SchriftelijkAcitivty.class));
+                startActivity(new Intent(this, SchriftelijkActivity.class));
                 return true;
             case R.id.activity_nieuwe_patient:
                 startActivity(new Intent(this, PatientActivity.class));
