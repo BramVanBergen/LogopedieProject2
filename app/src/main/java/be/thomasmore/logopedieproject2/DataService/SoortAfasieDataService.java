@@ -11,13 +11,11 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.SoortAfasie;
 
 public class SoortAfasieDataService {
-
     private DatabaseHelper dbHelper;
 
     public SoortAfasieDataService(DatabaseHelper dbHelper){
         this.dbHelper = dbHelper;
     }
-    //private DatabaseHelper dbHelper = DatabaseHelper.getDbHelper(App.getAppContext());
 
     // get single SoortAfasie
     public SoortAfasie getSoortAfasie(long id) {
