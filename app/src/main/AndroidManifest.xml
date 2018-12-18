@@ -22,6 +22,10 @@
         <activity
             android:name=".Activities.MondelingActivity"
             android:label="@string/title_activity_mondeling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.SchriftelijkAcitivty"
+            android:label="@string/title_activity_schriftelijk_acitivty"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
