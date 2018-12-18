@@ -15,15 +15,16 @@
         android:padding="15dp">
 
         <ImageView
+            android:id="@+id/situatieplaat"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="top"/>
 
         <EditText
             android:id="@+id/beschrijving_mondelinge_plaat"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:inputType="text|textMultiLine"
-            android:gravity="top"/>
+            android:inputType="text|textMultiLine" />
 
         <Button
             android:id="@+id/buttonsubmit"

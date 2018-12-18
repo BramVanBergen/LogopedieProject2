@@ -1,10 +1,8 @@
 package be.thomasmore.logopedieproject2.Activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.widget.ImageView;
 
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.R;
@@ -19,6 +17,12 @@ public class SchriftelijkActivity extends MenuActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Schriftelijke oefening");
 
+        setSituatieplaat();
+    }
+
+    public void setSituatieplaat() {
+        ImageView situatieplaat = (ImageView) findViewById(R.id.situatieplaat);
+        situatieplaat.setImageResource(R.drawable.situatieplaat_1);
     }
 
 }
