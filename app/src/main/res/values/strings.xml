@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- Voornaam -->
-    <string name="Voornaamlabel">Naam: </string>
+    <string name="Voornaamlabel">Voornaam: </string>
     <string name="Voornaamplaceholder">Bram</string>
 
     <!-- Naam -->

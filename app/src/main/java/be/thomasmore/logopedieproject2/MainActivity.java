@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textViewGeboortedatum = (TextView) findViewById(R.id.geboortedatum);
             textViewGeboortedatum.setText(day + "/" + (month + 1) + "/" + year);
+
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DATE);
         }
     };
 
@@ -154,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textViewTestdatum = (TextView) findViewById(R.id.testdatum);
             textViewTestdatum.setText(day + "/" + (month + 1) + "/" + year);
+
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DATE);
         }
     };
 
