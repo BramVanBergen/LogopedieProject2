@@ -44,4 +44,5 @@
 
     <!-- Submit -->
     <string name="ButtonSubmit">Opslaan</string>
+    <string name="title_activity_mondeling">MondelingActivity</string>
 </resources>
