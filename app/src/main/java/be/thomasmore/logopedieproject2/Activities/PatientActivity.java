@@ -119,12 +119,8 @@ public class PatientActivity extends MenuActivity {
         dbP = new PatientDataService(new DatabaseHelper(this));
         Patient patient = new Patient();
 
-        int id = R.id.naam;
+        //TODO logopedistID toevoegen
 
-        EditText edit = (EditText)findViewById(id);
-        String test1 = edit.getText().toString();
-
-/*
         String voornaam = ((EditText) findViewById(R.id.voornaam)).getText().toString();
         String naam = ((EditText) findViewById(R.id.naam)).getText().toString();
         String geboortedatum = ((EditText) findViewById(R.id.geboortedatum)).getText().toString();
@@ -138,12 +134,13 @@ public class PatientActivity extends MenuActivity {
         patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
         patient.setSoortAfasieId(soortafasie.getId());
         testdatumGlobaal = testdatum;
-*/
+
         dbP.insertPatient(patient);
 
-        dbP.getPatientList();
+        List<Patient> patienten = dbP.getPatientList();
     }
 
+    //TODO Chronologische leeftijd weergeven bij focusloss van geboortedatum en testdatum
     //
     //  Bereken Chronologische datum
     //
