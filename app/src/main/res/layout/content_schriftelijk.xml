@@ -21,7 +21,7 @@
             android:gravity="top"/>
 
         <EditText
-            android:id="@+id/beschrijving_mondelinge_plaat"
+            android:id="@+id/beschrijving_schriftelijke_plaat"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:inputType="text|textMultiLine" />
@@ -31,7 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ButtonSubmit"
-            android:gravity="left"/>
+            android:gravity="left"
+            android:onClick="onSubmit"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

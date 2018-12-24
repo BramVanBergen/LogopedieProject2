@@ -48,4 +48,12 @@
     <string name="ButtonSubmit">Opslaan</string>
     <string name="title_activity_schriftelijk_acitivty">SchriftelijkAcitivty</string>
     <string name="title_activity_patient">PatientActivity</string>
+
+    <!-- Schriftelijke beschrijving -->
+    <!-- Mondelinge beschrijving -->
+    <string name="buttonStartOpnemen">Start opnemen</string>
+    <string name="buttonStopOpnemen">Stop opnemen</string>
+    <string name="buttonOpnameAfspelen">Afspelen</string>
+    <string name="buttonOpnameStoppen">Stoppen</string>
+    <string name="buttonOpnameOpslaan">Opname opslaan</string>
 </resources>

@@ -27,6 +27,36 @@
             android:layout_height="wrap_content"
             android:text="@string/ButtonSubmit"
             android:gravity="left"/>
+
+        <Button
+            android:id="@+id/button_start_opnemen"
+            android:text="@string/buttonStartOpnemen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button_stop_opnemen"
+            android:text="@string/buttonStopOpnemen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button_opname_afspelen"
+            android:text="@string/buttonOpnameAfspelen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button_opname_stoppen"
+            android:text="@string/buttonOpnameStoppen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button_opname_opslaan"
+            android:text="@string/buttonOpnameOpslaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
