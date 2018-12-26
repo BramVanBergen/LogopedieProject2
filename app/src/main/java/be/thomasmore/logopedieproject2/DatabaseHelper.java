@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static DatabaseHelper dbHelper;
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "logopedieProject2";
 
@@ -121,8 +121,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     private void insertPatienten(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (1, 'Bram', 'Van Bergen', 'M', '27/08/1998', 9, 1);");
-        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (2, 'Arno', 'Stoop', 'M', '30/07/1998', 3, 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (1, 'Bram', 'Van Bergen', 'M', '27-08-1998', 9, 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (2, 'Arno', 'Stoop', 'M', '30-07-1998', 3, 1);");
     }
 
     private void insertLogopedist(SQLiteDatabase db) {
@@ -143,13 +143,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     private void insertScore(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 50, 4, 3, 5, '11/12/2018', 2);");
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 3, 2, 2, '5/12/2018', 1);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 50, 4, 3, 5, '11-12-2018', 2);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 3, 2, 2, '5-12-2018', 1);");
     }
 
     private void insertAantalWoorden(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 47, 23, 19, 5, '5/12/2018', 1);");
-        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 15, 11, 2, '5/12/2018', 2);");
+        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 47, 23, 19, 5, '5-12-2018', 1);");
+        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 15, 11, 2, '5-12-2018', 2);");
     }
 
     private void insertEfficientie(SQLiteDatabase db) {

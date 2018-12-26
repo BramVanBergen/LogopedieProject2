@@ -1,6 +1,7 @@
 package be.thomasmore.logopedieproject2.Activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -15,7 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import be.thomasmore.logopedieproject2.MenuActivity;
@@ -49,6 +54,12 @@ public class MondelingActivity extends MenuActivity {
         buttonOpnameOpslaan = (Button)findViewById(R.id.button_opname_opslaan);
         buttonPlay = (Button)findViewById(R.id.button_opname_afspelen);
         buttonStop = (Button)findViewById(R.id.button_opname_stoppen);
+
+        // disable buttons
+        buttonStopOpname.setEnabled(false);
+        buttonStartOpname.setEnabled(true);
+        buttonStop.setEnabled(false);
+        buttonPlay.setEnabled(false);
 
 
             buttonStartOpname.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +114,18 @@ public class MondelingActivity extends MenuActivity {
 
     public void startOpnemen(View v) {
         if (checkPermissionFromDevice()) {
-            pathsave = Environment.getExternalStorageDirectory()
-                    .getAbsolutePath() + "/"
-                    + UUID.randomUUID().toString() + "_audio_record.3gp";
+            String datumVandaag = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String tijd = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+
+            File folder = new File(this.getFilesDir() +
+                    File.separator + "Audio/Logopedie/Nuyts Tom");
+
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+            pathsave = this.getFilesDir() + "/Audio/Logopedie/Nuyts Tom/" + datumVandaag + "_" + tijd + "_NuytsTom_logopedieSessie.mp3";
+
             setupMediaRecorder();
             try {
                 mediaRecorder.prepare();
@@ -114,6 +134,8 @@ public class MondelingActivity extends MenuActivity {
                 e.printStackTrace();
             }
 
+            buttonStartOpname.setEnabled(false);
+            buttonStopOpname.setEnabled(true);
             buttonPlay.setEnabled(false);
             buttonStop.setEnabled(false);
 
@@ -166,8 +188,8 @@ public class MondelingActivity extends MenuActivity {
     private void setupMediaRecorder() {
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.DEFAULT);
         mediaRecorder.setOutputFile(pathsave);
     }
 

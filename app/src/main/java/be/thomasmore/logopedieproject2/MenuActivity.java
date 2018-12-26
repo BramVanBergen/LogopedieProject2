@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import be.thomasmore.logopedieproject2.Activities.MondelingActivity;
+import be.thomasmore.logopedieproject2.Activities.OpnamesActivity;
 import be.thomasmore.logopedieproject2.Activities.PatientActivity;
 import be.thomasmore.logopedieproject2.Activities.SchriftelijkActivity;
 
@@ -33,6 +34,9 @@ public class MenuActivity extends AppCompatActivity {
                 return true;
             case R.id.activity_nieuwe_patient:
                 startActivity(new Intent(this, PatientActivity.class));
+                return true;
+            case R.id.activity_opnames:
+                startActivity(new Intent(this, OpnamesActivity.class));
                 return true;
             default:
                 return false;

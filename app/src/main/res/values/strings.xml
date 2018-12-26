@@ -2,6 +2,7 @@
     <string name="app_name">LogopedieProject2</string>
     <string name="title_activity_mondeling">Mondelinge oefening</string>
     <string name="title_activity_schriftelijk">Schriftelijke oefening</string>
+    <string name="title_activity_opnames">Opnames</string>
     <string name="title_activity_nieuwe_patient">Nieuwe patiënt</string>
 
     <!-- Voornaam -->
@@ -56,4 +57,5 @@
     <string name="buttonOpnameAfspelen">Afspelen</string>
     <string name="buttonOpnameStoppen">Stoppen</string>
     <string name="buttonOpnameOpslaan">Opname opslaan</string>
+    <string name="title_activity_opnames_detail">OpnamesDetailActivity</string>
 </resources>

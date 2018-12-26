@@ -1,7 +1,11 @@
 package be.thomasmore.logopedieproject2;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
+
+import java.io.File;
 
 
 public class MainActivity extends MenuActivity {
@@ -14,6 +18,8 @@ public class MainActivity extends MenuActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Menu");
 
+        TextView testTextView = (TextView) findViewById(R.id.test);
+        testTextView.setText(this.getFilesDir().getAbsolutePath());
     }
 
     public void berekenChronologischeLeeftijd() {
