@@ -31,19 +31,12 @@
     <string-array name="geslacht_arrays">
         <item>Man</item>
         <item>Vrouw</item>
-        <item>X (lol)</item>
-        <item>Apache Attack Helicopter</item>
+        <item>X</item>
     </string-array>
 
     <!-- Soort afasie -->
     <string name="SoortAfasielabel">Soort afasie</string>
     <string name="afasie_prompt">Kies een afasie</string>
-    <string-array name="afasie_arrays">
-        <item>afasie 1</item>
-        <item>afasie 2</item>
-        <item>Nog iets anders</item>
-        <item>Laura kakt haar eigen onder van de zattigheid</item>
-    </string-array>
 
     <!-- Submit -->
     <string name="ButtonSubmit">Opslaan</string>
