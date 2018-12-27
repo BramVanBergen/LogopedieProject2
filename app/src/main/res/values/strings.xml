@@ -27,8 +27,8 @@
 
     <!-- Geslacht -->
     <string name="Geslachtlabel">Geslacht: </string>
-    <string name="geslacht_prompt">Kies een geslacht</string>
-    <string-array name="geslacht_arrays">
+    <string name="GeslachtPrompt">Kies een geslacht</string>
+    <string-array name="GeslachtArray">
         <item>Man</item>
         <item>Vrouw</item>
         <item>X</item>
@@ -36,7 +36,7 @@
 
     <!-- Soort afasie -->
     <string name="SoortAfasielabel">Soort afasie</string>
-    <string name="afasie_prompt">Kies een afasie</string>
+    <string name="SoortAfasiePlaceholder">Kies een afasie</string>
 
     <!-- Submit -->
     <string name="ButtonSubmit">Opslaan</string>

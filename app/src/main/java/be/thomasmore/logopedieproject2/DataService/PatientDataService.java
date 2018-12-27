@@ -27,7 +27,7 @@ public class PatientDataService {
         values.put("achternaam", patient.getAchternaam());
         values.put("geslacht", patient.getGeslacht());
         values.put("geboortedatum", patient.getGeboortedatum());
-        values.put("soortAfasieId", patient.getSoortAfasieId());
+        values.put("soortAfasie", patient.getSoortAfasie());
         values.put("logopedistId", patient.getLogopedistId());
 
         long id = db.insert("patiënt", null, values);
@@ -45,7 +45,7 @@ public class PatientDataService {
         values.put("achternaam", patient.getAchternaam());
         values.put("geslacht", patient.getGeslacht());
         values.put("geboortedatum", patient.getGeboortedatum());
-        values.put("soortAfasieId", patient.getSoortAfasieId());
+        values.put("soortAfasie", patient.getSoortAfasie());
         values.put("logopedistId", patient.getLogopedistId());
 
         int numrows = db.update(
@@ -77,7 +77,7 @@ public class PatientDataService {
 
         Cursor cursor = db.query(
                 "patiënt",
-                new String[] { "id", "voornaam", "achternaam", "geslacht", "geboortedatum", "soortAfasieId", "logopedistId" },
+                new String[] { "id", "voornaam", "achternaam", "geslacht", "geboortedatum", "soortAfasie", "logopedistId" },
                 "id = ?",
                 new String[] { String.valueOf(id) },
                 null,
@@ -94,7 +94,7 @@ public class PatientDataService {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getLong(5),
+                    cursor.getString(5),
                     cursor.getLong(6)
             );
         }
@@ -120,7 +120,7 @@ public class PatientDataService {
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getString(4),
-                        cursor.getLong(5),
+                        cursor.getString(5),
                         cursor.getLong(6)
                 );
                 lijst.add(patient);

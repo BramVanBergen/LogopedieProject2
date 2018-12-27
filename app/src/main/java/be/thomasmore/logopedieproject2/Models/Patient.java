@@ -8,20 +8,20 @@ public class Patient {
     private String achternaam;
     private String geslacht;
     private String geboortedatum;
-    private long soortAfasieId;
+    private String soortAfasie;
     private long logopedistId;
 
     public Patient() {
 
     }
 
-    public Patient(long id, String voornaam, String achternaam, String geslacht, String geboortedatum, long soortAfasieId, long logopedistId) {
+    public Patient(long id, String voornaam, String achternaam, String geslacht, String geboortedatum, String soortAfasie, long logopedistId) {
         this.id = id;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.geslacht = geslacht;
         this.geboortedatum = geboortedatum;
-        this.soortAfasieId = soortAfasieId;
+        this.soortAfasie = soortAfasie;
         this.logopedistId = logopedistId;
     }
 
@@ -65,12 +65,12 @@ public class Patient {
         this.geboortedatum = geboortedatum;
     }
 
-    public long getSoortAfasieId() {
-        return soortAfasieId;
+    public String getSoortAfasie() {
+        return soortAfasie;
     }
 
-    public void setSoortAfasieId(long soortAfasieId) {
-        this.soortAfasieId = soortAfasieId;
+    public void setSoortAfasie(String soortAfasie) {
+        this.soortAfasie = soortAfasie;
     }
 
     public long getLogopedistId() {
