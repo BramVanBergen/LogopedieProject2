@@ -7,11 +7,11 @@
 
     <!-- Voornaam -->
     <string name="Voornaamlabel">Voornaam: </string>
-    <string name="Voornaamplaceholder">Bram</string>
+    <string name="Voornaamplaceholder">Voornaam</string>
 
     <!-- Naam -->
     <string name="Naamlabel">Naam: </string>
-    <string name="Naamplaceholder">Van Bergen</string>
+    <string name="Naamplaceholder">Achternaam</string>
 
     <!-- Geboortedatum -->
     <string name="Geboortedatumlabel">Geboortedatum: </string>
@@ -20,6 +20,7 @@
     <!-- Testdatum -->
     <string name="Testdatumlabel">Testdatum: </string>
     <string name="Testdatumplaceholder">11/12/2018</string>
+    <string name="TestdatumToevoegenButton">Voeg een testdatum toe</string>
 
     <!-- Chronologische leeftijd -->
     <string name="ChronologischeLeeftijdlabel">Chronologische leeftijd: </string>

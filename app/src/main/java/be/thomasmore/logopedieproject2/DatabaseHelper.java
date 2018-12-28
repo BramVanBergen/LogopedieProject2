@@ -38,9 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "achternaam TEXT," +
                 "geslacht TEXT," +
                 "geboortedatum TEXT," +
-                "soortAfasieId INTEGER," +
+                "soortAfasie TEXT," +
                 "logopedistId INTEGER," +
-                "FOREIGN KEY (soortAfasieId) REFERENCES soortAfasie(id)," +
                 "FOREIGN KEY (logopedistId) REFERENCES logopedist(id))";
         db.execSQL(CREATE_TABLE_PATIENT);
 
@@ -52,11 +51,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "gebruikersnaam TEXT," +
                 "wachtwoord TEXT)";
         db.execSQL(CREATE_TABLE_LOGOPEDIST);
-
-        String CREATE_TABLE_SOORTAFASIE = "CREATE TABLE soortAfasie (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "naam TEXT)";
-        db.execSQL(CREATE_TABLE_SOORTAFASIE);
 
         String CREATE_TABLE_SCORE = "CREATE TABLE score (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -110,7 +104,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         //Gegevens inladen
         insertPatienten(db);
         insertLogopedist(db);
-        insertSoortAfasieen(db);
         insertScore(db);
         insertAantalWoorden(db);
         insertEfficientie(db);
@@ -121,25 +114,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     private void insertPatienten(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (1, 'Bram', 'Van Bergen', 'M', '27-08-1998', 9, 1);");
-        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasieId, logopedistId) VALUES (2, 'Arno', 'Stoop', 'M', '30-07-1998', 3, 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (1, 'Bram', 'Van Bergen', 'M', '27-08-1998', 'Motorische afasie', 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (2, 'Arno', 'Stoop', 'M', '30-07-1998', 'Afasie van Wernicke', 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (2, 'Tom', 'Nuyts', 'M', '28-08-1998', 'Globale afasie', 1);");
     }
 
     private void insertLogopedist(SQLiteDatabase db) {
         db.execSQL("INSERT INTO logopedist (id, voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES (1, 'Laurien', 'Houben', 'laurien.houben@test.com', 'laurien', 'test');");
         db.execSQL("INSERT INTO logopedist (id, voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES (2, 'Tom', 'Nuyts', 'tom.nuyts@test.com', 'tom', 'test');");
-    }
-
-    private void insertSoortAfasieen(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (1, 'Motorische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (2, 'Transcorticale motorische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (3, 'Sensorische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (4, 'Transcorticale sensorische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (5, 'Geleidingsafasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (6, 'Amnestische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (7, 'Gemengde afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (8, 'Akoestische afasie');");
-        db.execSQL("INSERT INTO soortAfasie (id, naam) VALUES (9, 'Alexie');");
     }
 
     private void insertScore(SQLiteDatabase db) {
@@ -473,7 +455,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS patiënt");
         db.execSQL("DROP TABLE IF EXISTS logopedist");
-        db.execSQL("DROP TABLE IF EXISTS soortAfasie");
         db.execSQL("DROP TABLE IF EXISTS score");
         db.execSQL("DROP TABLE IF EXISTS aantalWoorden");
         db.execSQL("DROP TABLE IF EXISTS efficiëntie");

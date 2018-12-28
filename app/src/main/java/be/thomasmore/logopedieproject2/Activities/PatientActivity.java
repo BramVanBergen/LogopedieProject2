@@ -28,17 +28,15 @@ import be.thomasmore.logopedieproject2.DataService.SoortAfasieDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.Patient;
+import be.thomasmore.logopedieproject2.Models.Score;
 import be.thomasmore.logopedieproject2.Models.SoortAfasie;
 import be.thomasmore.logopedieproject2.R;
 
 public class PatientActivity extends MenuActivity {
 
     private PatientDataService dbP;
-    private ScoreDataService dbS;
-    private String testdatumGlobaal = "";
 
     Calendar calendar = Calendar.getInstance();
-    private SoortAfasieDataService dbAfasie;
     private int year = calendar.get(Calendar.YEAR), month = calendar.get(Calendar.MONTH), day = calendar.get(Calendar.DATE);
 
 
@@ -108,19 +106,19 @@ public class PatientActivity extends MenuActivity {
         String voornaam = ((EditText) findViewById(R.id.voornaam)).getText().toString();
         String naam = ((EditText) findViewById(R.id.naam)).getText().toString();
         String geboortedatum = ((EditText) findViewById(R.id.geboortedatum)).getText().toString();
-        String testdatum = ((EditText) findViewById(R.id.testdatum)).getText().toString();
-        Spinner geslacht = (Spinner) findViewById(R.id.geslacht);
+        Spinner geslacht = findViewById(R.id.geslacht);
         String soortAfasie = ((EditText) findViewById(R.id.afasie)).getText().toString();
+
 
         patient.setVoornaam(voornaam);
         patient.setAchternaam(naam);
         patient.setGeboortedatum(geboortedatum);
         patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
         patient.setSoortAfasie(soortAfasie);
-        testdatumGlobaal = testdatum;
 
         dbP.insertPatient(patient);
 
+        //TODO VERWIJDEREN, ENKEL VOOR TESTEN
         List<Patient> patienten = dbP.getPatientList();
     }
 
@@ -170,7 +168,7 @@ public class PatientActivity extends MenuActivity {
     //DATEPICKER TESTDATUM
     public void showDatePickerDialogTestdatum() {
         DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
-        datepicker.setTitle(getString(R.string.Geboortedatumlabel));
+        datepicker.setTitle(getString(R.string.Testdatumlabel));
         datepicker.show();
     }
 
@@ -188,5 +186,6 @@ public class PatientActivity extends MenuActivity {
             day = calendar.get(Calendar.DATE);
         }
     };
+
 
 }
