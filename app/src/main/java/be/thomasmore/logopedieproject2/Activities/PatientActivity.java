@@ -86,22 +86,6 @@ public class PatientActivity extends MenuActivity {
             }
         });
 
-        //SOORTEN AFASIE
-        // Spinner Drop down elements
-        dbAfasie = new SoortAfasieDataService(new DatabaseHelper(this));
-        List<SoortAfasie> soortenafasie = dbAfasie.getSoortAfasieList();
-        List<String> SoortenAfasie = new ArrayList<>();
-        for (SoortAfasie soortafasie: soortenafasie)
-        {
-            SoortenAfasie.add(soortafasie.getNaam());
-        }
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> AfasieAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, SoortenAfasie);
-
-        Spinner SoortAfasieSpinner = (Spinner)findViewById(R.id.afasie);
-        SoortAfasieSpinner.setAdapter(AfasieAdapter);
-
         //BUTTON SUBMIT ONCLICK
         Button btnSubmit = (Button) findViewById(R.id.buttonsubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -119,31 +103,28 @@ public class PatientActivity extends MenuActivity {
         dbP = new PatientDataService(new DatabaseHelper(this));
         Patient patient = new Patient();
 
-        int id = R.id.naam;
+        //TODO logopedistID toevoegen
 
-        EditText edit = (EditText)findViewById(id);
-        String test1 = edit.getText().toString();
-
-/*
         String voornaam = ((EditText) findViewById(R.id.voornaam)).getText().toString();
         String naam = ((EditText) findViewById(R.id.naam)).getText().toString();
         String geboortedatum = ((EditText) findViewById(R.id.geboortedatum)).getText().toString();
         String testdatum = ((EditText) findViewById(R.id.testdatum)).getText().toString();
         Spinner geslacht = (Spinner) findViewById(R.id.geslacht);
-        Spinner soortafasie = (Spinner) findViewById(R.id.afasie);
+        String soortAfasie = ((EditText) findViewById(R.id.afasie)).getText().toString();
 
         patient.setVoornaam(voornaam);
         patient.setAchternaam(naam);
         patient.setGeboortedatum(geboortedatum);
         patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
-        patient.setSoortAfasieId(soortafasie.getId());
+        patient.setSoortAfasie(soortAfasie);
         testdatumGlobaal = testdatum;
-*/
+
         dbP.insertPatient(patient);
 
-        dbP.getPatientList();
+        List<Patient> patienten = dbP.getPatientList();
     }
 
+    //TODO Chronologische leeftijd weergeven bij focusloss van geboortedatum en testdatum
     //
     //  Bereken Chronologische datum
     //
