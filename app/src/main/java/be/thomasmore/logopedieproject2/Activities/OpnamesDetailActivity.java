@@ -1,15 +1,21 @@
 package be.thomasmore.logopedieproject2.Activities;
 
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +26,9 @@ import be.thomasmore.logopedieproject2.Models.Opname;
 import be.thomasmore.logopedieproject2.R;
 
 public class OpnamesDetailActivity extends MenuActivity {
+    ImageView opnamesPlay, opnamesPause, opnamesStop, opnamesDelete;
+    MediaRecorder mediaRecorder;
+    MediaPlayer mediaPlayer;
 
     List<Opname> opnameLijst = new ArrayList<>();
 
@@ -34,8 +43,12 @@ public class OpnamesDetailActivity extends MenuActivity {
         Bundle bundle = getIntent().getExtras();
         String folder = bundle.getString("folder");
 
+        opnamesPlay = (ImageView)findViewById(R.id.opnames_detail_play);
+        opnamesPause = (ImageView)findViewById(R.id.opnames_detail_pause);
+        opnamesStop = (ImageView)findViewById(R.id.opnames_detail_stop);
+
         getOpnames(folder);
-        useCustomAdapter();
+        useCustomAdapter(folder);
     }
 
     private void getOpnames(String folder) {
@@ -50,18 +63,11 @@ public class OpnamesDetailActivity extends MenuActivity {
         }
     }
 
-    private void useCustomAdapter() {
+    private void useCustomAdapter(String folder) {
         OpnamesFilesAdapter opnameLijstAdapter =
-                new OpnamesFilesAdapter(getApplicationContext(), opnameLijst);
+                new OpnamesFilesAdapter(getApplicationContext(), opnameLijst, folder);
 
         final ListView listViewPlatforms = (ListView) findViewById(R.id.listView_opnames_detail);
         listViewPlatforms.setAdapter(opnameLijstAdapter);
-
-//        listViewPlatforms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView parentView, View childView, int position, long id) {
-//                toonFiles(opnameLijst.get(position).getNaam());
-//            }
-//        });
     }
 }
