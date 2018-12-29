@@ -8,7 +8,7 @@
     tools:context=".Activities.SchriftelijkActivity"
     tools:showIn="@layout/activity_schriftelijk">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -17,22 +17,24 @@
         <ImageView
             android:id="@+id/situatieplaat"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="top"/>
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart" />
 
         <EditText
             android:id="@+id/beschrijving_schriftelijke_plaat"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="50dp"
             android:inputType="text|textMultiLine" />
 
         <Button
             android:id="@+id/buttonsubmit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ButtonSubmit"
-            android:gravity="left"
-            android:onClick="onSubmit"/>
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:onClick="onSubmit"
+            android:text="@string/ButtonSubmit" />
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

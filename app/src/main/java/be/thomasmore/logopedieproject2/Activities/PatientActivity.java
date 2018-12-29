@@ -122,7 +122,7 @@ public class PatientActivity extends MenuActivity {
         List<Patient> patienten = dbP.getPatientList();
     }
 
-    //TODO Chronologische leeftijd weergeven bij focusloss van geboortedatum en testdatum
+    //TODO Chronologische leeftijd weergeven verplaatsen naar oefeningen
     //
     //  Bereken Chronologische datum
     //
