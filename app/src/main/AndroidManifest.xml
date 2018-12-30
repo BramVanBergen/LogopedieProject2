@@ -44,8 +44,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.OpnamesDetailActivity"
-            android:label="@string/title_activity_opnames_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_opnames_detail_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
