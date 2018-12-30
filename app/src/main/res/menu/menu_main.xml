@@ -22,4 +22,9 @@
         android:orderInCategory="100"
         android:title="@string/title_activity_nieuwe_patient"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/activity_login"
+        android:orderInCategory="100"
+        android:title="@string/title_activity_login"
+        app:showAsAction="never" />
 </menu>

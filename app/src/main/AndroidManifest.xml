@@ -44,7 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.HistoriekDetailActivity"
-            android:label="@string/title_activity_opnames_detail"
+            android:label="@string/title_activity_opnames_detail_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.HistoriekDatumServiceActivity"
@@ -53,7 +53,11 @@
         <activity
             android:name=".Activities.LaadPatientMondelingActivity"
             android:label="@string/title_activity_laad_patient_mondeling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
