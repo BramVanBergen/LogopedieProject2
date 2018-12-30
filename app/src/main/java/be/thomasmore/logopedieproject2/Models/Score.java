@@ -9,18 +9,20 @@ public class Score {
     private int substitutiegedrag;
     private int coherentie;
     private String datum;
+    private String audioFile;
     private long patientId;
 
     public Score() {
     }
 
-    public Score(long id, int productiviteit, int efficientie, int substitutiegedrag, int coherentie, String datum, long patientId) {
+    public Score(long id, int productiviteit, int efficientie, int substitutiegedrag, int coherentie, String datum, String audioFile, long patientId) {
         this.id = id;
         this.productiviteit = productiviteit;
         this.efficientie = efficientie;
         this.substitutiegedrag = substitutiegedrag;
         this.coherentie = coherentie;
         this.datum = datum;
+        this.audioFile = audioFile;
         this.patientId = patientId;
     }
 
@@ -70,6 +72,14 @@ public class Score {
 
     public void setDatum(String datum) {
         this.datum = datum;
+    }
+
+    public String getAudioFile() {
+        return audioFile;
+    }
+
+    public void setAudioFile(String audioFile) {
+        this.audioFile = audioFile;
     }
 
     public long getPatientId() {

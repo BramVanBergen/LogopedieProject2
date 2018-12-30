@@ -2,7 +2,7 @@
     <string name="app_name">LogopedieProject2</string>
     <string name="title_activity_mondeling">Mondelinge oefening</string>
     <string name="title_activity_schriftelijk">Schriftelijke oefening</string>
-    <string name="title_activity_opnames">Opnames</string>
+    <string name="title_activity_opnames">Historiek</string>
     <string name="title_activity_nieuwe_patient">Nieuwe patiënt</string>
 
     <!-- Voornaam -->
@@ -51,5 +51,25 @@
     <string name="buttonOpnameAfspelen">Afspelen</string>
     <string name="buttonOpnameStoppen">Stoppen</string>
     <string name="buttonOpnameOpslaan">Opname opslaan</string>
+
+    <!-- Laad Patiënt Activity -->
+    <string name="laad_patient_mondeling_text">Kies een patiënt waarmee je een oefening gaat doen.</string>
+    <string name="buttonVerder">Verder</string>
+
+    <!-- Detail Historiek -->
+    <string name="content_historiek_detail_patientNaam">Patiënt: </string>
+    <string name="content_historiek_detail_chronologischeLeeftijd">Leeftijd: </string>
+    <string name="content_historiek_detail_scores">Scores: </string>
+    <string name="content_historiek_detail_efficientie">Efficiëntie: </string>
+    <string name="content_historiek_detail_productiviteit">Productiviteit: </string>
+    <string name="content_historiek_detail_substitutiegedrag">Substitutiegedrag: </string>
+    <string name="content_historiek_detail_coherentie">Coherentie: </string>
+    <string name="content_historiek_detail_opnames">Opname: </string>
+
+
+
+
     <string name="title_activity_opnames_detail">OpnamesDetailActivity</string>
+    <string name="title_activity_historiek_datum_service">HistoriekDatumService</string>
+    <string name="title_activity_laad_patient_mondeling">LaadPatientMondelingActivity</string>
 </resources>

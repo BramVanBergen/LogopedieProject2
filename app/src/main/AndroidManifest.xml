@@ -39,12 +39,20 @@
             android:label="@string/title_activity_nieuwe_patient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.OpnamesActivity"
+            android:name=".Activities.HistoriekActivity"
             android:label="@string/title_activity_opnames"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activities.OpnamesDetailActivity"
+            android:name=".Activities.HistoriekDetailActivity"
             android:label="@string/title_activity_opnames_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.HistoriekDatumServiceActivity"
+            android:label="@string/title_activity_historiek_datum_service"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LaadPatientMondelingActivity"
+            android:label="@string/title_activity_laad_patient_mondeling"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activities.OpnamesActivity"
-    tools:showIn="@layout/activity_opnames">
+    tools:context=".Activities.HistoriekDatumServiceActivity"
+    tools:showIn="@layout/activity_historiek_datum_service">
 
     <ListView
-        android:id="@+id/listView_opnames"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:dividerHeight="1dp"/>
+        android:id="@+id/content_historiek_datum_service_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

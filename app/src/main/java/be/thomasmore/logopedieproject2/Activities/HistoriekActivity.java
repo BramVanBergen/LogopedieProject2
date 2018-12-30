@@ -1,36 +1,35 @@
 package be.thomasmore.logopedieproject2.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.thomasmore.logopedieproject2.Adapters.OpnamesFolderAdapter;
+import be.thomasmore.logopedieproject2.Adapters.HistoriekFolderAdapter;
+import be.thomasmore.logopedieproject2.DataService.PatientDataService;
+import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.Opname;
+import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.R;
 
-public class OpnamesActivity extends MenuActivity {
-
+public class HistoriekActivity extends MenuActivity {
+    PatientDataService dbPatient = new PatientDataService(new DatabaseHelper(this));
     List<Opname> opnameLijst = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opnames);
+        setContentView(R.layout.activity_historiek);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Opnames");
+        getSupportActionBar().setTitle("Historiek");
 
         getOpnames();
         useCustomAdapter();
@@ -43,31 +42,34 @@ public class OpnamesActivity extends MenuActivity {
 
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
-                opnameLijst.add(new Opname(files[i].getName()));
+                Long patientId = Long.parseLong(files[i].getName());
+                Patient patient = dbPatient.getPatient(patientId);
+
+                opnameLijst.add(new Opname(patientId, patient.getVoornaam() + " " + patient.getAchternaam()));
             }
         }
     }
 
     private void useCustomAdapter() {
-        OpnamesFolderAdapter opnameLijstAdapter =
-                new OpnamesFolderAdapter(getApplicationContext(), opnameLijst);
+        HistoriekFolderAdapter opnameLijstAdapter =
+                new HistoriekFolderAdapter(getApplicationContext(), opnameLijst);
 
-        final ListView listViewPlatforms = (ListView) findViewById(R.id.listView_opnames);
-        listViewPlatforms.setAdapter(opnameLijstAdapter);
+        final ListView listViewPatienten = (ListView) findViewById(R.id.listView_opnames);
+        listViewPatienten.setAdapter(opnameLijstAdapter);
 
-        listViewPlatforms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewPatienten.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parentView, View childView, int position, long id) {
-                toonFiles(opnameLijst.get(position).getNaam());
+                toonFiles(opnameLijst.get(position).getId());
             }
         });
     }
 
-    private void toonFiles(String folder) {
+    private void toonFiles(Long patientId) {
         Bundle bundle = new Bundle();
-        bundle.putString("folder", folder);
+        bundle.putLong("patientId", patientId);
 
-        Intent intent = new Intent(this, OpnamesDetailActivity.class);
+        Intent intent = new Intent(this, HistoriekDatumServiceActivity.class);
         intent.putExtras(bundle);
 
         startActivity(intent);

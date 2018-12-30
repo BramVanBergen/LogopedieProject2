@@ -12,12 +12,12 @@ import java.util.List;
 import be.thomasmore.logopedieproject2.Models.Opname;
 import be.thomasmore.logopedieproject2.R;
 
-public class OpnamesFolderAdapter extends ArrayAdapter<Opname> {
+public class HistoriekFolderAdapter extends ArrayAdapter<Opname> {
     private final Context context;
     private final List<Opname> values;
 
-    public OpnamesFolderAdapter(Context context, List<Opname> values) {
-        super(context, R.layout.opnames_listviewitem, values);
+    public HistoriekFolderAdapter(Context context, List<Opname> values) {
+        super(context, R.layout.historiek_listviewitem, values);
         this.context = context;
         this.values = values;
     }
@@ -27,7 +27,7 @@ public class OpnamesFolderAdapter extends ArrayAdapter<Opname> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.opnames_listviewitem, parent, false);
+        View rowView = inflater.inflate(R.layout.historiek_listviewitem, parent, false);
 
         final TextView textViewName = (TextView) rowView.findViewById(R.id.name_folder);
 

@@ -5,8 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import be.thomasmore.logopedieproject2.Activities.LaadPatientMondelingActivity;
 import be.thomasmore.logopedieproject2.Activities.MondelingActivity;
-import be.thomasmore.logopedieproject2.Activities.OpnamesActivity;
+import be.thomasmore.logopedieproject2.Activities.HistoriekActivity;
 import be.thomasmore.logopedieproject2.Activities.PatientActivity;
 import be.thomasmore.logopedieproject2.Activities.SchriftelijkActivity;
 
@@ -27,7 +28,7 @@ public class MenuActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.activity_mondeling:
-                startActivity(new Intent(this, MondelingActivity.class));
+                startActivity(new Intent(this, LaadPatientMondelingActivity.class));
                 return true;
             case R.id.activity_schriftelijk:
                 startActivity(new Intent(this, SchriftelijkActivity.class));
@@ -36,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(this, PatientActivity.class));
                 return true;
             case R.id.activity_opnames:
-                startActivity(new Intent(this, OpnamesActivity.class));
+                startActivity(new Intent(this, HistoriekActivity.class));
                 return true;
             default:
                 return false;

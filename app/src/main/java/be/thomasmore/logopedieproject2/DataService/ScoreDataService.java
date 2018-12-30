@@ -28,6 +28,7 @@ public class ScoreDataService {
         values.put("substitutiegedrag", score.getSubstitutiegedrag());
         values.put("coherentie", score.getCoherentie());
         values.put("datum", score.getDatum());
+        values.put("audioFile", score.getAudioFile());
         values.put("patiëntId", score.getPatientId());
 
         long id = db.insert("score", null, values);
@@ -46,6 +47,7 @@ public class ScoreDataService {
         values.put("substitutiegedrag", score.getSubstitutiegedrag());
         values.put("coherentie", score.getCoherentie());
         values.put("datum", score.getDatum());
+        values.put("audioFile", score.getAudioFile());
         values.put("patiëntId", score.getPatientId());
 
         int numrows = db.update(
@@ -77,7 +79,7 @@ public class ScoreDataService {
 
         Cursor cursor = db.query(
                 "score",
-                new String[] { "id", "productiviteit", "efficiëntie", "substitutiegedrag", "coherentie", "datum", "patiëntId" },
+                new String[] { "id", "productiviteit", "efficiëntie", "substitutiegedrag", "coherentie", "datum", "audioFile", "patiëntId" },
                 "id = ?",
                 new String[] { String.valueOf(id) },
                 null,
@@ -95,7 +97,8 @@ public class ScoreDataService {
                     cursor.getInt(3),
                     cursor.getInt(4),
                     cursor.getString(5),
-                    cursor.getInt(6)
+                    cursor.getString(6),
+                    cursor.getInt(7)
             );
         }
         cursor.close();
@@ -121,7 +124,45 @@ public class ScoreDataService {
                         cursor.getInt(3),
                         cursor.getInt(4),
                         cursor.getString(5),
-                        cursor.getInt(6)
+                        cursor.getString(6),
+                        cursor.getInt(7)
+                );
+                lijst.add(score);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return lijst;
+    }
+
+    // get list Score
+    public List<Score> getScoreListByPatientId(Long patientId) {
+        List<Score> lijst = new ArrayList<Score>();
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                "score",
+                new String[] { "id", "productiviteit", "efficiëntie", "substitutiegedrag", "coherentie", "datum", "audioFile", "patiëntId" },
+                "patiëntId = ?",
+                new String[] { String.valueOf(patientId) },
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Score score = new Score(
+                        cursor.getLong(0),
+                        cursor.getInt(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getInt(7)
                 );
                 lijst.add(score);
             } while (cursor.moveToNext());

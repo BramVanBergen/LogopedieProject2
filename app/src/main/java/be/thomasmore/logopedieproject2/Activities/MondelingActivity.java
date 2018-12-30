@@ -24,10 +24,15 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
+import be.thomasmore.logopedieproject2.DataService.PatientDataService;
+import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.MenuActivity;
+import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.R;
 
 public class MondelingActivity extends MenuActivity {
+    PatientDataService dbPatient = new PatientDataService(new DatabaseHelper(this));
+
     Button buttonStartOpname, buttonStopOpname;
     ImageView buttonPlay, buttonPause, buttonStop;
 
@@ -35,6 +40,8 @@ public class MondelingActivity extends MenuActivity {
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
     int length = 0;
+
+    Patient patient;
 
     final int REQUEST_PERMISSION_CODE = 1000;
 
@@ -45,6 +52,12 @@ public class MondelingActivity extends MenuActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Mondelinge oefening");
+
+        Bundle bundle = getIntent().getExtras();
+        Long patientId = bundle.getLong("patientId");
+
+        patient = getPatient(patientId);
+
 
         // request Runtime permission
         if (!checkPermissionFromDevice()) {
@@ -98,6 +111,12 @@ public class MondelingActivity extends MenuActivity {
 
     }
 
+    public Patient getPatient(Long patientId) {
+        patient = dbPatient.getPatient(patientId);
+
+        return patient;
+    }
+
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -130,13 +149,13 @@ public class MondelingActivity extends MenuActivity {
             String tijdMin = new SimpleDateFormat("mm", Locale.getDefault()).format(new Date());
 //
             File folder = new File(this.getFilesDir() +
-                    File.separator + "Audio/Logopedie/Nuyts Tom/");
+                    File.separator + "Audio/Logopedie/" + patient.getId());
 
             if (!folder.exists()) {
                 folder.mkdirs();
             }
 
-            pathsave = folder + "/" + datumVandaag + "_" + tijdUur + "u" + tijdMin + "_NuytsTom_logopedieSessie.mp3";
+            pathsave = folder + "/" + datumVandaag + "_" + tijdUur + "u" + tijdMin + "_" + patient.getVoornaam() + patient.getAchternaam() + "_" + patient.getId() + "_logopedieSessie.mp3";
 
             setupMediaRecorder();
             try {

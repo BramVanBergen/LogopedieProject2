@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Activities.OpnamesDetailActivity"
-    tools:showIn="@layout/activity_opnames_detail">
+    tools:context=".Activities.HistoriekActivity"
+    tools:showIn="@layout/activity_historiek">
 
     <ListView
-        android:id="@+id/listView_opnames_detail"
+        android:id="@+id/listView_opnames"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:dividerHeight="1dp"/>

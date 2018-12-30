@@ -8,7 +8,8 @@ public class Opname {
 
     }
 
-    public Opname(String naam) {
+    public Opname(long id, String naam) {
+        this.id = id;
         this.naam = naam;
     }
 
