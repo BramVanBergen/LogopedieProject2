@@ -3,8 +3,6 @@ package be.thomasmore.logopedieproject2.Adapters;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import be.thomasmore.logopedieproject2.Activities.OpnamesDetailActivity;
 import be.thomasmore.logopedieproject2.Models.Opname;
 import be.thomasmore.logopedieproject2.R;
 
-public class OpnamesFilesAdapter extends ArrayAdapter<Opname> {
+public class HistoriekFilesAdapter extends ArrayAdapter<Opname> {
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
 
@@ -30,8 +26,8 @@ public class OpnamesFilesAdapter extends ArrayAdapter<Opname> {
     private final String folder;
     private int length = 0;
 
-    public OpnamesFilesAdapter(Context context, List<Opname> values, String folder) {
-        super(context, R.layout.opnames_listviewitem, values);
+    public HistoriekFilesAdapter(Context context, List<Opname> values, String folder) {
+        super(context, R.layout.historiek_listviewitem, values);
         this.context = context;
         this.values = values;
         this.folder = folder;
@@ -42,7 +38,7 @@ public class OpnamesFilesAdapter extends ArrayAdapter<Opname> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.opnames_detail_listviewitem, parent, false);
+        View rowView = inflater.inflate(R.layout.historiek_detail_listviewitem, parent, false);
 
         final TextView textViewName = (TextView) rowView.findViewById(R.id.name_folder);
         final ImageView imageViewPlay = (ImageView) rowView.findViewById(R.id.opnames_detail_play);
@@ -122,6 +118,7 @@ public class OpnamesFilesAdapter extends ArrayAdapter<Opname> {
     private void stop(View view) {
         length = 0;
         mediaPlayer.stop();
+        mediaPlayer.release();
         Toast.makeText(context, "Stoppen...", Toast.LENGTH_SHORT).show();
     }
 }

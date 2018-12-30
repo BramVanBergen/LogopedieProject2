@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static DatabaseHelper dbHelper;
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "logopedieProject2";
 
@@ -59,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "substitutiegedrag INTEGER," +
                 "coherentie INTEGER," +
                 "datum TEXT," +
+                "audioFile TEXT," +
                 "patiëntId INTEGER," +
                 "FOREIGN KEY (patiëntId) REFERENCES patiënt(id))";
         db.execSQL(CREATE_TABLE_SCORE);
@@ -116,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private void insertPatienten(SQLiteDatabase db) {
         db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (1, 'Bram', 'Van Bergen', 'M', '27-08-1998', 'Motorische afasie', 1);");
         db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (2, 'Arno', 'Stoop', 'M', '30-07-1998', 'Afasie van Wernicke', 1);");
-        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (2, 'Tom', 'Nuyts', 'M', '28-08-1998', 'Globale afasie', 1);");
+        db.execSQL("INSERT INTO patiënt (id, voornaam, achternaam, geslacht, geboortedatum, soortAfasie, logopedistId) VALUES (3, 'Tom', 'Nuyts', 'M', '28-08-1998', 'Globale afasie', 1);");
     }
 
     private void insertLogopedist(SQLiteDatabase db) {
@@ -125,8 +126,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     private void insertScore(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 50, 4, 3, 5, '11-12-2018', 2);");
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 3, 2, 2, '5-12-2018', 1);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (1, 50, 4, 3, 5, '11-12-2018 13:08', '2018-12-28_12u39_NuytsTom_logopedieSessie.mp3', 2);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (2, 28, 3, 2, 2, '5-12-2018 09:15', '2018-12-28_12u35_NuytsTom_logopedieSessie.mp3', 1);");
     }
 
     private void insertAantalWoorden(SQLiteDatabase db) {
@@ -329,120 +330,120 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     public void insertCoherenties(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Grootvader slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Man slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Opa slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Papa slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Vader slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Grootvader slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Man slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Opa slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Papa slaapt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Vader slaapt');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Kat vis vangen', 'Boeken vallen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Poes vis vangen', 'Boeken vallen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Kat vis vangen', 'Vaas valt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Poes vis vangen', 'Vaas valt');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat duwt', 'Vaas valt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat staart', 'Vaas valt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes duwt', 'Vaas valt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes staart', 'Vaas valt');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat duwt', 'Boeken vallen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat staart', 'Boeken vallen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes duwt', 'Boeken vallen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes staart', 'Boeken vallen');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde grootvader');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde grootvader');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde man');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde opa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde papa');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd grootvader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde grootvader');");
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter Wakker maken');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-
-
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
-
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Grootvader slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Man slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Opa slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Papa slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Moe', 'Vader slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Grootvader slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Man slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Opa slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Papa slaapt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (1, 'Gedronken', 'Vader slaapt');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Kat vis vangen', 'Boeken vallen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Poes vis vangen', 'Boeken vallen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Kat vis vangen', 'Vaas valt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (2, 'Poes vis vangen', 'Vaas valt');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat duwt', 'Vaas valt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat staart', 'Vaas valt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes duwt', 'Vaas valt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes staart', 'Vaas valt');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat duwt', 'Boeken vallen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Kat staart', 'Boeken vallen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes duwt', 'Boeken vallen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (4, 'Poes staart', 'Boeken vallen');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter te waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwt grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter gewaarschuwd grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwde grootvader');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde grootvader');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde man');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde opa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde papa');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde vader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind te waarschuwen grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwt grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind gewaarschuwd grootvader');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Kind waarschuwde grootvader');");
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter Wakker maken');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
+//
+//
+//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
+//
         db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (7, 'Vaas valt', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
         db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (8, 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader', 'Grootvader / man / opa / papa / vader pijn');");
         db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (9, 'Boeken vallen', 'Grootvader / man / opa / papa / vader pijn');");

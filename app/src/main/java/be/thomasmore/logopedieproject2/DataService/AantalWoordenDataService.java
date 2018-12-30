@@ -24,11 +24,11 @@ public class AantalWoordenDataService {
 
         ContentValues values = new ContentValues();
         values.put("productiviteit", aantalWoorden.getProductiviteit());
-        values.put("efficientie", aantalWoorden.getEfficientie());
+        values.put("efficiëntie", aantalWoorden.getEfficientie());
         values.put("substitutiegedrag", aantalWoorden.getSubstitutiegedrag());
         values.put("coherentie", aantalWoorden.getCoherentie());
         values.put("datum", aantalWoorden.getDatum());
-        values.put("patientId", aantalWoorden.getPatientId());
+        values.put("patiëntId", aantalWoorden.getPatientId());
 
         long id = db.insert("aantalWoorden", null, values);
 
@@ -42,11 +42,11 @@ public class AantalWoordenDataService {
 
         ContentValues values = new ContentValues();
         values.put("productiviteit", aantalWoorden.getProductiviteit());
-        values.put("efficientie", aantalWoorden.getEfficientie());
+        values.put("efficiëntie", aantalWoorden.getEfficientie());
         values.put("substitutiegedrag", aantalWoorden.getSubstitutiegedrag());
         values.put("coherentie", aantalWoorden.getCoherentie());
         values.put("datum", aantalWoorden.getDatum());
-        values.put("patientId", aantalWoorden.getPatientId());
+        values.put("patiëntId", aantalWoorden.getPatientId());
 
         int numrows = db.update(
                 "aantalWoorden",
@@ -76,8 +76,8 @@ public class AantalWoordenDataService {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "soortAfasie",
-                new String[] { "id", "naam" },
+                "aantalWoorden",
+                new String[] { "id", "productiviteit", "efficiëntie", "substitutiegedrag", "coherentie", "datum", "patiëntId" },
                 "id = ?",
                 new String[] { String.valueOf(id) },
                 null,

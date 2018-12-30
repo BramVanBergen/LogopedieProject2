@@ -103,6 +103,38 @@ public class PatientDataService {
         return patient;
     }
 
+    // get single Patient
+    public Patient getPatientByVoornaam(String voornaam) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                "patiënt",
+                new String[] { "id", "voornaam", "achternaam", "geslacht", "geboortedatum", "soortAfasie", "logopedistId" },
+                "voornaam = ?",
+                new String[] { String.valueOf(voornaam) },
+                null,
+                null,
+                null,
+                null);
+
+        Patient patient = new Patient();
+
+        if (cursor.moveToFirst()) {
+            patient = new Patient(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getLong(6)
+            );
+        }
+        cursor.close();
+        db.close();
+        return patient;
+    }
+
     // get list Patient
     public List<Patient> getPatientList() {
         List<Patient> lijst = new ArrayList<Patient>();

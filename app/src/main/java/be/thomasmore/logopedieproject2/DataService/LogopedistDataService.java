@@ -100,6 +100,48 @@ public class LogopedistDataService {
         return logopedist;
     }
 
+    // check login credentials
+    public Logopedist login(String gebruikersnaam, String wachtwoord) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Logopedist logopedist = new Logopedist();
+
+        if (gebruikersnaam != null && wachtwoord != null) {
+            // gebruikersnaam of wachtwoord is niet ingevuld
+
+            Cursor cursor = db.query(
+                    "logopedist",
+                    new String[] { "id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord" },
+                    "gebruikersnaam = ?",
+                    new String[] { String.valueOf(gebruikersnaam) },
+                    null,
+                    null,
+                    null,
+                    null);
+
+
+            if (cursor.moveToFirst()) {
+                logopedist = new Logopedist(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)
+                );
+            }
+            cursor.close();
+
+            if (!logopedist.getWachtwoord().equals(wachtwoord)) {
+                // wachtwoord matcht niet met gebruikersnaam
+                logopedist = null;
+            }
+        }
+
+        db.close();
+        return logopedist;
+    }
+
     // get list Logopedist
     public List<Logopedist> getLogopedistList() {
         List<Logopedist> lijst = new ArrayList<Logopedist>();
