@@ -2,16 +2,20 @@ package be.thomasmore.logopedieproject2.Models;
 
 public class Coherentie {
     private long id;
-    private String oorzaak;
-    private String gevolg;
+    private String oorzaakOnderwerp;
+    private String oorzaakWerkwoord;
+    private String gevolgOnderwerp;
+    private String gevolgWerkwoord;
 
     public Coherentie() {
     }
 
-    public Coherentie(long id, String oorzaak, String gevolg) {
+    public Coherentie(long id, String oorzaakOnderwerp, String oorzaakWerkwoord, String gevolgOnderwerp, String gevolgWerkwoord) {
         this.id = id;
-        this.oorzaak = oorzaak;
-        this.gevolg = gevolg;
+        this.oorzaakOnderwerp = oorzaakOnderwerp;
+        this.oorzaakWerkwoord = oorzaakWerkwoord;
+        this.gevolgOnderwerp = gevolgOnderwerp;
+        this.gevolgWerkwoord = gevolgWerkwoord;
     }
 
     public long getId() {
@@ -22,19 +26,35 @@ public class Coherentie {
         this.id = id;
     }
 
-    public String getOorzaak() {
-        return oorzaak;
+    public String getOorzaakOnderwerp() {
+        return oorzaakOnderwerp;
     }
 
-    public void setOorzaak(String oorzaak) {
-        this.oorzaak = oorzaak;
+    public void setOorzaakOnderwerp(String oorzaakOnderwerp) {
+        this.oorzaakOnderwerp = oorzaakOnderwerp;
     }
 
-    public String getGevolg() {
-        return gevolg;
+    public String getOorzaakWerkwoord() {
+        return oorzaakWerkwoord;
     }
 
-    public void setGevolg(String gevolg) {
-        this.gevolg = gevolg;
+    public void setOorzaakWerkwoord(String oorzaakWerkwoord) {
+        this.oorzaakWerkwoord = oorzaakWerkwoord;
+    }
+
+    public String getGevolgOnderwerp() {
+        return gevolgOnderwerp;
+    }
+
+    public void setGevolgOnderwerp(String gevolgOnderwerp) {
+        this.gevolgOnderwerp = gevolgOnderwerp;
+    }
+
+    public String getGevolgWerkwoord() {
+        return gevolgWerkwoord;
+    }
+
+    public void setGevolgWerkwoord(String gevolgWerkwoord) {
+        this.gevolgWerkwoord = gevolgWerkwoord;
     }
 }

@@ -8,7 +8,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static DatabaseHelper dbHelper;
 
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
     // Database Name
     private static final String DATABASE_NAME = "logopedieProject2";
 
@@ -98,8 +98,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         String CREATE_TABLE_COHERENTIE = "CREATE TABLE coherentie (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "oorzaak TEXT," +
-                "gevolg TEXT)";
+                "oorzaakOnderwerp TEXT," +
+                "oorzaakWerkwoord TEXT," +
+                "gevolgOnderwerp TEXT," +
+                "gevolgWerkwoord TEXT)";
         db.execSQL(CREATE_TABLE_COHERENTIE);
 
         //Gegevens inladen
@@ -126,13 +128,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
     private void insertScore(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (1, 50, 4, 3, 5, '11-12-2018 13:08', '2018-12-28_12u39_NuytsTom_logopedieSessie.mp3', 2);");
-        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (2, 28, 3, 2, 2, '5-12-2018 09:15', '2018-12-28_12u35_NuytsTom_logopedieSessie.mp3', 1);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (1, 50, 4, 3, 5, '11-12-2018 13:08', '2018-12-29_15u12_ArnoStoop_2_logopedieSessie.mp3', 2);");
+        db.execSQL("INSERT INTO score (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, audioFile, patiëntId) VALUES (2, 28, 3, 2, 2, '05-12-2018 09:15', '2018-12-29_15u14_BramVan Bergen_1_logopedieSessie.mp3', 1);");
     }
 
     private void insertAantalWoorden(SQLiteDatabase db) {
-        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 47, 23, 19, 5, '5-12-2018', 1);");
-        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 15, 11, 2, '5-12-2018', 2);");
+        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (1, 50, 23, 19, 5, '11-12-2018 13:08', 2);");
+        db.execSQL("INSERT INTO aantalWoorden (id, productiviteit, efficiëntie, substitutiegedrag, coherentie, datum, patiëntId) VALUES (2, 28, 15, 11, 2, '05-12-2018 09:15', 1);");
     }
 
     private void insertEfficientie(SQLiteDatabase db) {
@@ -440,17 +442,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 //        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
 //        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
 //        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter waarschuwen');");
-//
-//
-//        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (6, 'Boeken vallen', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
-//
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (7, 'Vaas valt', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (8, 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader', 'Grootvader / man / opa / papa / vader pijn');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (9, 'Boeken vallen', 'Grootvader / man / opa / papa / vader pijn');");
-        db.execSQL("INSERT INTO coherentie (id, oorzaak, gevolg) VALUES (10, 'Vaast valt', 'Grootvader / man / opa / papa / vader pijn');");
+
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (1, 'Moe / Gedronken', '', 'Grootvader / man / opa / papa / vader', 'slaapt');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (2, 'Kat / poes / vis', 'vangen', 'Boeken', 'vallen');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (3, 'Kat / poes / vis', 'vangen', 'Vaas', 'valt');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (4, 'Kat / poes', 'duwt / staart', 'vaas', 'valt');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (5, 'Kat / poes', 'duwt / staart', 'Boeken', 'vallen');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (6, 'Boeken', 'vallen', 'Dochter / kind / kindje / meisje', 'waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (7, 'Vaas valt', 'Dochter / kind / kindje / meisje waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (8, 'Dochter / kind / kindje / meisje', 'waarschuwen / te waarschuwen / waarschuwt / gewaarschuwd / waarschuwde / wakker maken / wakker te maken / maakt wakker / maakte wakker / wakker gemaakt / wekken / te wekken / wekt / gewekt / wekte grootvader / man / opa / papa / vader', 'Grootvader / man / opa / papa / vader', 'pijn');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (9, 'Boeken', 'vallen', 'Grootvader / man / opa / papa / vader', 'pijn');");
+        db.execSQL("INSERT INTO coherentie (id, oorzaakOnderwerp, oorzaakWerkwoord, gevolgOnderwerp, gevolgWerkwoord) VALUES (10, 'Vaas', 'valt', 'Grootvader / man / opa / papa / vader', 'pijn');");
     }
 
-        // methode wordt uitgevoerd als database geupgrade wordt
+    // methode wordt uitgevoerd als database geupgrade wordt
     // hierin de vorige tabellen wegdoen en opnieuw creëren
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
