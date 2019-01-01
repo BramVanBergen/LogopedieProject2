@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import be.thomasmore.logopedieproject2.Activities.LaadPatientSchriftelijkActivity;
 import be.thomasmore.logopedieproject2.Activities.LoginActivity;
 import be.thomasmore.logopedieproject2.Activities.LaadPatientMondelingActivity;
 import be.thomasmore.logopedieproject2.Activities.MondelingActivity;
@@ -31,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LaadPatientMondelingActivity.class));
                 return true;
             case R.id.activity_schriftelijk:
-                startActivity(new Intent(this, SchriftelijkActivity.class));
+                startActivity(new Intent(this, LaadPatientSchriftelijkActivity.class));
                 return true;
             case R.id.activity_nieuwe_patient:
                 startActivity(new Intent(this, PatientActivity.class));

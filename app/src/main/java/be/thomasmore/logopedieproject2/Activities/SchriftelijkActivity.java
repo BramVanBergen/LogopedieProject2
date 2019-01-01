@@ -14,10 +14,12 @@ import java.util.List;
 import be.thomasmore.logopedieproject2.DataService.AantalWoordenDataService;
 import be.thomasmore.logopedieproject2.DataService.CoherentieDataService;
 import be.thomasmore.logopedieproject2.DataService.EfficientieDataService;
+import be.thomasmore.logopedieproject2.DataService.PatientDataService;
 import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DataService.SubstitutiegedragDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.MenuActivity;
+import be.thomasmore.logopedieproject2.Models.AantalWoorden;
 import be.thomasmore.logopedieproject2.Models.Coherentie;
 import be.thomasmore.logopedieproject2.Models.Efficientie;
 import be.thomasmore.logopedieproject2.Models.Patient;
@@ -32,6 +34,8 @@ public class SchriftelijkActivity extends MenuActivity {
     OefeningenHelper oefeningenHelper = new OefeningenHelper(this);
     ScoreDataService dbScore = new ScoreDataService(new DatabaseHelper(this));
     AantalWoordenDataService dbAantalWoorden = new AantalWoordenDataService(new DatabaseHelper(this));
+    PatientDataService dbPatient = new PatientDataService(new DatabaseHelper(this));
+
 
     private String schriftelijkeBeschrijving;
     private String[] woorden;
@@ -48,7 +52,17 @@ public class SchriftelijkActivity extends MenuActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Schriftelijke oefening");
 
+        Bundle bundle = getIntent().getExtras();
+        Long patientId = bundle.getLong("patientId");
+
+        patient = getPatient(patientId);
+
         setSituatieplaat();
+    }
+    public Patient getPatient(Long patientId) {
+        patient = dbPatient.getPatient(patientId);
+
+        return patient;
     }
 
     private void setSituatieplaat() {
@@ -57,7 +71,7 @@ public class SchriftelijkActivity extends MenuActivity {
         situatieplaat.setImageResource(R.drawable.situatieplaat_1);
     }
 
-    private void onSubmit(View v) {
+    public void onSubmit(View v) {
         // de beschrijving ophalen
         EditText beschrijving = (EditText) findViewById(R.id.beschrijving_schriftelijke_plaat);
         schriftelijkeBeschrijving = beschrijving.getText().toString();
@@ -101,7 +115,15 @@ public class SchriftelijkActivity extends MenuActivity {
 
         dbScore.insertScore(score);
 
-//        dbAantalWoorden.insertAantalWoorden();
+        AantalWoorden aantalWoorden = new AantalWoorden();
+        aantalWoorden.setProductiviteit(productiviteitAantalWoorden);
+        aantalWoorden.setEfficientie(efficientieAantalWoorden);
+        aantalWoorden.setSubstitutiegedrag(substitutiegedragAantalWoorden);
+        aantalWoorden.setCoherentie(coherentieAantalWoorden);
+        aantalWoorden.setDatum(datumVandaagString);
+        aantalWoorden.setPatientId(patient.getId());
+
+        dbAantalWoorden.insertAantalWoorden(aantalWoorden);
     }
 
 }

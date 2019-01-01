@@ -48,7 +48,7 @@ public class EfficientieDataService {
     public List<Efficientie> getEfficientieList() {
         List<Efficientie> lijst = new ArrayList<Efficientie>();
 
-        String selectQuery = "SELECT  * FROM efficientie ORDER BY id";
+        String selectQuery = "SELECT  * FROM efficiëntie ORDER BY id";
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

@@ -94,6 +94,7 @@
     </TableRow>
     <View style="@style/Divider"/>
     <TextView
+        android:id="@+id/content_historiek_detail_opnames"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:layout_width="match_parent"
