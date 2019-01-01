@@ -23,7 +23,7 @@ public class CoherentieDataService {
 
         Cursor cursor = db.query(
                 "coherentie",
-                new String[] { "id", "oorzaak", "gevolg" },
+                new String[] { "id", "oorzaakOnderwerp", "oorzaakWerkwoord", "gevolgOnderwerp", "gevolgWerkwoord" },
                 "id = ?",
                 new String[] { String.valueOf(id) },
                 null,
@@ -37,7 +37,9 @@ public class CoherentieDataService {
             coherentie = new Coherentie(
                     cursor.getLong(0),
                     cursor.getString(1),
-                    cursor.getString(2)
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
             );
         }
         cursor.close();
@@ -59,7 +61,9 @@ public class CoherentieDataService {
                 Coherentie coherentie = new Coherentie(
                         cursor.getLong(0),
                         cursor.getString(1),
-                        cursor.getString(2)
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4)
                 );
                 lijst.add(coherentie);
             } while (cursor.moveToNext());

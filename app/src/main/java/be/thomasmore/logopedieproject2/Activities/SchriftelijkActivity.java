@@ -7,27 +7,38 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import be.thomasmore.logopedieproject2.DataService.AantalWoordenDataService;
 import be.thomasmore.logopedieproject2.DataService.CoherentieDataService;
 import be.thomasmore.logopedieproject2.DataService.EfficientieDataService;
+import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DataService.SubstitutiegedragDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.Coherentie;
 import be.thomasmore.logopedieproject2.Models.Efficientie;
+import be.thomasmore.logopedieproject2.Models.Patient;
+import be.thomasmore.logopedieproject2.Models.Score;
 import be.thomasmore.logopedieproject2.Models.Substitutiegedrag;
+import be.thomasmore.logopedieproject2.OefeningenHelper;
 import be.thomasmore.logopedieproject2.R;
 
 import static android.widget.RelativeLayout.TRUE;
 
 public class SchriftelijkActivity extends MenuActivity {
-    private EfficientieDataService dbEfficientie;
-    private SubstitutiegedragDataService dbSubstitutiegedrag;
-    private CoherentieDataService dbCoherentie;
+    OefeningenHelper oefeningenHelper = new OefeningenHelper(this);
+    ScoreDataService dbScore = new ScoreDataService(new DatabaseHelper(this));
+    AantalWoordenDataService dbAantalWoorden = new AantalWoordenDataService(new DatabaseHelper(this));
 
     private String schriftelijkeBeschrijving;
     private String[] woorden;
+
+    int productiviteitScore, productiviteitAantalWoorden, efficientieScore, efficientieAantalWoorden, substitutiegedragScore, substitutiegedragAantalWoorden, coherentieScore, coherentieAantalWoorden;
+
+    Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +48,16 @@ public class SchriftelijkActivity extends MenuActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Schriftelijke oefening");
 
-        dbEfficientie = new EfficientieDataService(new DatabaseHelper(this));
-        dbSubstitutiegedrag = new SubstitutiegedragDataService(new DatabaseHelper(this));
-        dbCoherentie = new CoherentieDataService(new DatabaseHelper(this));
-
         setSituatieplaat();
     }
 
-    public void setSituatieplaat() {
+    private void setSituatieplaat() {
         // situatieplaat in de app zetten
         ImageView situatieplaat = (ImageView) findViewById(R.id.situatieplaat);
         situatieplaat.setImageResource(R.drawable.situatieplaat_1);
     }
 
-    public void onSubmit(View v) {
+    private void onSubmit(View v) {
         // de beschrijving ophalen
         EditText beschrijving = (EditText) findViewById(R.id.beschrijving_schriftelijke_plaat);
         schriftelijkeBeschrijving = beschrijving.getText().toString();
@@ -62,90 +69,39 @@ public class SchriftelijkActivity extends MenuActivity {
         berekenScores();
     }
 
-    public void berekenScores() {
-        int productiviteit = berekenProductiviteit();
-        int efficientie = berekenEfficientie();
-        int substitutiegedrag = berekenSubstitutiegedrag();
-        int coherentie = berekenCoherentie();
+    private void berekenScores() {
+        productiviteitScore = oefeningenHelper.berekenProductiviteitScore(woorden);
+        productiviteitAantalWoorden = oefeningenHelper.berekenProductiviteitScore(woorden);
+
+        efficientieScore = oefeningenHelper.berekenEfficientieScore(woorden);
+        efficientieAantalWoorden = oefeningenHelper.berekenEfficientieAantalWoorden(woorden);
+
+        substitutiegedragScore = oefeningenHelper.berekenSubstitutiegedragScore(woorden);
+        substitutiegedragAantalWoorden = oefeningenHelper.berekenSubstitutiegedragAantalWoorden(woorden);
+
+        coherentieScore = oefeningenHelper.berekenCoherentieScore(woorden);
+        coherentieAantalWoorden = oefeningenHelper.berekenCoherentieScore(woorden);
+
+        insertScores();
     }
 
-    public int berekenProductiviteit() {
-        // bereking productiviteit
-        return woorden.length;
+    private void insertScores() {
+        Date datumVandaag = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("dd-MM-yyyy HH:mm");
+        String datumVandaagString = sdf.format(datumVandaag);
+
+        Score score = new Score();
+        score.setProductiviteit(productiviteitScore);
+        score.setEfficientie(efficientieScore);
+        score.setSubstitutiegedrag(substitutiegedragScore);
+        score.setCoherentie(coherentieScore);
+        score.setDatum(datumVandaagString);
+        score.setPatientId(patient.getId());
+
+        dbScore.insertScore(score);
+
+//        dbAantalWoorden.insertAantalWoorden();
     }
 
-    public int berekenEfficientie() {
-        // berekening efficiëntie
-        int woordenTeller = 0;
-        List<Efficientie> efficientieLijst = dbEfficientie.getEfficientieList();
-
-        // verhoog woordenTeller telkens er een match is tussen een woord uit de efficientielijst en de beschrijving van de plaat
-        for (int i = 0; i < efficientieLijst.size(); i++) {
-            for (String woord : woorden) {
-                if (efficientieLijst.get(i).getWoord().equals(woord)) {
-                    woordenTeller++;
-                }
-            }
-        }
-
-        // berekening uiteindelijke score
-        int percentueleScore = (woordenTeller / efficientieLijst.size()) * 100;
-
-        if (percentueleScore <= 25) {
-            return 1;
-        } else if (percentueleScore <= 50) {
-            return 2;
-        } else if (percentueleScore <= 75) {
-            return 3;
-        } else if (percentueleScore <= 100) {
-            return 4;
-        }
-
-        return 0;
-    }
-
-    public int berekenSubstitutiegedrag() {
-        // berekening substitutiegedrag
-        int woordenTeller = 0;
-        List<Substitutiegedrag> substitutiegedragLijst = dbSubstitutiegedrag.getSubstitutiegedragList();
-
-        // verhoog woordenTeller telkens er een match is tussen een woord uit de substitutiegedraglijst en de beschrijving van de plaat
-        for (int i = 0; i < substitutiegedragLijst.size(); i++) {
-            for (String woord : woorden) {
-                if (substitutiegedragLijst.get(i).getWoord().equals(woord)) {
-                    woordenTeller++;
-                }
-            }
-        }
-
-        // berekening uiteindelijke score
-        int percentueleScore = (woordenTeller / substitutiegedragLijst.size()) * 100;
-
-        if (percentueleScore <= 25) {
-            return 4;
-        } else if (percentueleScore <= 50) {
-            return 3;
-        } else if (percentueleScore <= 75) {
-            return 2;
-        } else if (percentueleScore <= 100) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    public int berekenCoherentie() {
-        // berekening coherentie
-        List<Coherentie> coherentieLijst = dbCoherentie.getCoherentieList();
-
-        for (int i = 0; i < coherentieLijst.size(); i++) {
-            for (String woord : woorden) {
-                if (coherentieLijst.get(i).getOorzaak().equals(woord)) {
-//                    woordenTeller++;
-                }
-            }
-        }
-
-        return 0;
-    }
 }
