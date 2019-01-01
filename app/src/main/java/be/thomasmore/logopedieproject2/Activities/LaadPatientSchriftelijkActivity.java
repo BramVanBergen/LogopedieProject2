@@ -7,11 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,7 @@ import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.R;
 
-public class LaadPatientMondelingActivity extends AppCompatActivity {
+public class LaadPatientSchriftelijkActivity extends AppCompatActivity {
     PatientDataService dbPatient;
     List<Patient> patienten;
     Spinner patientenSpinner;
@@ -30,17 +27,17 @@ public class LaadPatientMondelingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_laad_patient_mondeling);
+        setContentView(R.layout.activity_laad_patient_schriftelijk);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Kies patiënt");
 
         dbPatient = new PatientDataService(new DatabaseHelper(this));
-        patientenSpinner = (Spinner) findViewById(R.id.laad_patient_mondeling_spinner);
+        patientenSpinner = (Spinner) findViewById(R.id.laad_patient_schriftelijk_spinner);
 
         getPatienten();
 
-        Button verder = (Button) findViewById(R.id.laad_patient_mondeling_button);
+        Button verder = (Button) findViewById(R.id.laad_patient_schriftelijk_button);
 
         verder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +66,10 @@ public class LaadPatientMondelingActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putLong("patientId", patientId);
 
-        Intent intent = new Intent(this, MondelingActivity.class);
+        Intent intent = new Intent(this, SchriftelijkActivity.class);
         intent.putExtras(bundle);
 
         startActivity(intent);
     }
+
 }

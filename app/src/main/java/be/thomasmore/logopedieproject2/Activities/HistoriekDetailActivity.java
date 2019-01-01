@@ -118,42 +118,54 @@ public class HistoriekDetailActivity extends MenuActivity {
         imageViewPause = (ImageView) findViewById(R.id.opnames_detail_pause);
         imageViewStop = (ImageView) findViewById(R.id.opnames_detail_stop);
 
-        imageViewPlay.setEnabled(true);
-        imageViewPause.setEnabled(false);
-        imageViewStop.setEnabled(false);
+        if (audioFile != null) {
+            imageViewPlay.setEnabled(true);
+            imageViewPause.setEnabled(false);
+            imageViewStop.setEnabled(false);
 
-        imageViewPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageViewPlay.setEnabled(false);
-                imageViewPause.setEnabled(true);
-                imageViewStop.setEnabled(true);
+            imageViewPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageViewPlay.setEnabled(false);
+                    imageViewPause.setEnabled(true);
+                    imageViewStop.setEnabled(true);
 
-                play(view, audioFile);
-            }
-        });
+                    play(view, audioFile);
+                }
+            });
 
-        imageViewPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageViewPlay.setEnabled(true);
-                imageViewPause.setEnabled(false);
-                imageViewStop.setEnabled(false);
+            imageViewPause.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageViewPlay.setEnabled(true);
+                    imageViewPause.setEnabled(false);
+                    imageViewStop.setEnabled(false);
 
-                pause(view);
-            }
-        });
+                    pause(view);
+                }
+            });
 
-        imageViewStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageViewPlay.setEnabled(true);
-                imageViewPause.setEnabled(false);
-                imageViewStop.setEnabled(false);
+            imageViewStop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageViewPlay.setEnabled(true);
+                    imageViewPause.setEnabled(false);
+                    imageViewStop.setEnabled(false);
 
-                stop(view);
-            }
-        });
+                    stop(view);
+                }
+            });
+        } else {
+            TextView opnamesTextView = (TextView) findViewById(R.id.content_historiek_detail_opnames);
+            opnamesTextView.setVisibility(View.INVISIBLE);
+
+            imageViewPlay.setVisibility(View.INVISIBLE);
+            imageViewPause.setVisibility(View.INVISIBLE);
+            imageViewStop.setVisibility(View.INVISIBLE);
+        }
+
+
+
     }
 
     private void play(View view, String audioFile) {

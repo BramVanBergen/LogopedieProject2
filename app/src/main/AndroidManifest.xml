@@ -58,6 +58,10 @@
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.LaadPatientSchriftelijkActivity"
+            android:label="@string/title_activity_laad_patient_schriftelijk"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

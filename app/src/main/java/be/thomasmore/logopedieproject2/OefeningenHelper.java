@@ -2,7 +2,10 @@ package be.thomasmore.logopedieproject2;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import be.thomasmore.logopedieproject2.DataService.CoherentieDataService;
 import be.thomasmore.logopedieproject2.DataService.EfficientieDataService;
@@ -14,12 +17,15 @@ import be.thomasmore.logopedieproject2.Models.Substitutiegedrag;
 public class OefeningenHelper {
     private Context context;
 
-    private EfficientieDataService dbEfficientie = new EfficientieDataService(new DatabaseHelper(context));
-    private SubstitutiegedragDataService dbSubstitutiegedrag = new SubstitutiegedragDataService(new DatabaseHelper(context));
-    private CoherentieDataService dbCoherentie = new CoherentieDataService(new DatabaseHelper(context));
+    private EfficientieDataService dbEfficientie;
+    private SubstitutiegedragDataService dbSubstitutiegedrag;
+    private CoherentieDataService dbCoherentie;
 
     public OefeningenHelper(Context context) {
         this.context = context;
+        dbEfficientie = new EfficientieDataService(new DatabaseHelper(context));
+        dbSubstitutiegedrag = new SubstitutiegedragDataService(new DatabaseHelper(context));
+        dbCoherentie = new CoherentieDataService(new DatabaseHelper(context));
     }
 
     public int berekenProductiviteitScore(String[] woorden) {
@@ -123,35 +129,53 @@ public class OefeningenHelper {
 
     public int berekenCoherentieScore(String[] woorden) {
         // berekening coherentie
+        List<Coherentie> OorzaakOnderwerpLijst = new ArrayList<Coherentie>();
+        List<Coherentie> OorzaakWerkwoordLijst = new ArrayList<Coherentie>();
+        List<Coherentie> GevolgOnderwerpLijst = new ArrayList<Coherentie>();
+        List<Coherentie> GevolgWerkwoordLijst = new ArrayList<Coherentie>();
+        List<Coherentie> coherentieLijstFinaal = new ArrayList<Coherentie>();
+
         int woordenTeller = 0;
-        int tellerOorzaak = 0;
-        int tellerGevolg = 0;
+//        int tellerOorzaak = 0;
+//        int tellerGevolg = 0;
         List<Coherentie> coherentieLijst = dbCoherentie.getCoherentieList();
 
         for (int i = 0; i < coherentieLijst.size(); i++) {
             for (String woord : woorden) {
-                if (coherentieLijst.get(i).getOorzaakOnderwerp().contains(woord)) {
-                    for (int j = 1; j < 6; j++) {
-                        if (coherentieLijst.get(i).getOorzaakWerkwoord().contains(woorden[tellerOorzaak + j])) {
-                            for (String woordGevolg : woorden) {
-                                if (coherentieLijst.get(i).getGevolgOnderwerp().contains(woordGevolg)) {
-                                    for (int k = 1; k < 6; k++) {
-                                        if (coherentieLijst.get(i).getGevolgWerkwoord().contains(woorden[tellerGevolg + k])) {
-                                            woordenTeller++;
-                                        }
-                                    }
-                                }
-
-                                tellerGevolg++;
-                            }
-                        }
-                    }
+                if (coherentieLijst.get(i).getOorzaakOnderwerp().toLowerCase().matches("(.*)" + woord.toLowerCase() + "(.*)")) {
+                    OorzaakOnderwerpLijst.add(coherentieLijst.get(i));
                 }
-
-                tellerOorzaak++;
             }
         }
 
-        return woordenTeller;
+        for (Coherentie oorzaakOnderwerp: OorzaakOnderwerpLijst) {
+            for (String woord: woorden) {
+                if (oorzaakOnderwerp.getOorzaakWerkwoord().toLowerCase().matches("(.*)" + woord.toLowerCase() + "(.*)")) {
+                    OorzaakWerkwoordLijst.add(oorzaakOnderwerp);
+                }
+            }
+        }
+
+        for (Coherentie oorzaakWerkwoord: OorzaakWerkwoordLijst) {
+            for (String woord: woorden) {
+                if (oorzaakWerkwoord.getGevolgOnderwerp().toLowerCase().matches("(.*)" + woord.toLowerCase() + "(.*)")) {
+                    GevolgOnderwerpLijst.add(oorzaakWerkwoord);
+                }
+            }
+        }
+
+        for (Coherentie gevolgOnderwerp: GevolgOnderwerpLijst) {
+            for (String woord: woorden) {
+                if (gevolgOnderwerp.getGevolgOnderwerp().toLowerCase().matches("(.*)" + woord.toLowerCase() + "(.*)")) {
+                    GevolgWerkwoordLijst.add(gevolgOnderwerp);
+                }
+            }
+        }
+
+        Set<Coherentie> listWithoutDuplicates = new LinkedHashSet<Coherentie>(GevolgWerkwoordLijst);
+        coherentieLijstFinaal.clear();
+        coherentieLijstFinaal.addAll(listWithoutDuplicates);
+
+        return coherentieLijstFinaal.size();
     }
 }

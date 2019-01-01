@@ -79,4 +79,5 @@
     <string name="content_historiek_detail_substitutiegedrag">Substitutiegedrag: </string>
     <string name="content_historiek_detail_coherentie">Coherentie: </string>
     <string name="content_historiek_detail_opnames">Opname: </string>
+    <string name="title_activity_laad_patient_schriftelijk">LaadPatientSchriftelijk</string>
 </resources>

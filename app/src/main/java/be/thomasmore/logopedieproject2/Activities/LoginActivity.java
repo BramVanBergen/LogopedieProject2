@@ -40,26 +40,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logIn() {
-        dbL = new LogopedistDataService(new DatabaseHelper(this));
-Logopedist logopedist = new Logopedist();
-
-        String gebruikersnaam = ((EditText)findViewById(R.id.gebruikersnaam)).getText().toString();
-        String wachtwoord = ((EditText)findViewById(R.id.wachtwoord)).getText().toString();
-
-
-        if (gebruikersnaam.contains("@")){
-            logopedist.setEmail(gebruikersnaam);
-        }
-        else {
-            logopedist.setGebruikersnaam(gebruikersnaam);
-        }
-
-
-        List<Logopedist> logopedisten = dbL.getLogopedistList();
-        if (logopedisten.contains(logopedist) )
-        {
-            dbL.getLogopedist()
-        }
+//        dbL = new LogopedistDataService(new DatabaseHelper(this));
+//Logopedist logopedist = new Logopedist();
+//
+//        String gebruikersnaam = ((EditText)findViewById(R.id.gebruikersnaam)).getText().toString();
+//        String wachtwoord = ((EditText)findViewById(R.id.wachtwoord)).getText().toString();
+//
+//
+//        if (gebruikersnaam.contains("@")){
+//            logopedist.setEmail(gebruikersnaam);
+//        }
+//        else {
+//            logopedist.setGebruikersnaam(gebruikersnaam);
+//        }
+//
+//
+//        List<Logopedist> logopedisten = dbL.getLogopedistList();
+//        if (logopedisten.contains(logopedist) )
+//        {
+//            dbL.getLogopedist();
+//        }
 
     }
 
