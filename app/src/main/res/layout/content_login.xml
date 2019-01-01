@@ -11,49 +11,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/gebruikersnaam_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_gebruikersnaam"/>
-
-            <EditText
-                android:id="@+id/gebruikersnaam"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/login_gebruikersnaam_placeholder"/>
-        </LinearLayout>
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/gebruikersnaam_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_gebruikersnaam" />
 
-            <TextView
-                android:id="@+id/wachtwoord_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_wachtwoord"/>
+                <EditText
+                    android:id="@+id/gebruikersnaam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_gebruikersnaam_placeholder" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/wachtwoord"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/wachtwoord_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_wachtwoord" />
+
+                <EditText
+                    android:id="@+id/wachtwoord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_wachtwoord_placeholder"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
             <Button
+                android:id="@+id/logInButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/login_button" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp">
+
+            <TextView
+                android:id="@+id/tekst_registreer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tekst_registreer" />
+
+            <Button
+                android:id="@+id/link_registreer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
                 android:text="@string/button_registreer"
-                />
+                android:textColor="@color/colorPrimary"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                android:textAllCaps="false"/>
         </LinearLayout>
 
     </LinearLayout>

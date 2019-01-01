@@ -61,10 +61,14 @@
     <string name="buttonOpnameOpslaan">Opname opslaan</string>
 
     <!-- Login -->
-    <string name="button_registreer">Registreer</string>
+    <string name="tekst_registreer">Nog geen account? </string>
+    <string name="button_registreer"><u>Registreer</u></string>
     <string name="login_gebruikersnaam">Email: </string>
     <string name="login_gebruikersnaam_placeholder">voorbeeld@voorbeeld.be </string>
     <string name="login_wachtwoord">Wachtwoord: </string>
+    <string name="login_wachtwoord_placeholder">Wachtwoord </string>
+    <string name="login_button">Log in</string>
+    <string name="loguit_button">Log uit</string>
 
     <!-- Laad Patiënt Activity -->
     <string name="laad_patient_mondeling_text">Kies een patiënt waarmee je een oefening gaat doen.</string>
@@ -80,4 +84,6 @@
     <string name="content_historiek_detail_coherentie">Coherentie: </string>
     <string name="content_historiek_detail_opnames">Opname: </string>
     <string name="title_activity_laad_patient_schriftelijk">LaadPatientSchriftelijk</string>
+    <string name="title_activity_registreer">Registreer</string>
+    <string name="title_activity_login_detail">LoginDetailActivity</string>
 </resources>
