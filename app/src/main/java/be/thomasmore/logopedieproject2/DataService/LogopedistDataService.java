@@ -50,7 +50,7 @@ public class LogopedistDataService {
                 "logopedist",
                 values,
                 "id = ?",
-                new String[] { String.valueOf(logopedist.getId()) });
+                new String[]{String.valueOf(logopedist.getId())});
 
         db.close();
         return numrows > 0;
@@ -63,7 +63,7 @@ public class LogopedistDataService {
         int numrows = db.delete(
                 "logopedist",
                 "id = ?",
-                new String[] { String.valueOf(id) });
+                new String[]{String.valueOf(id)});
 
         db.close();
         return numrows > 0;
@@ -75,9 +75,9 @@ public class LogopedistDataService {
 
         Cursor cursor = db.query(
                 "logopedist",
-                new String[] { "id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord" },
+                new String[]{"id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord"},
                 "id = ?",
-                new String[] { String.valueOf(id) },
+                new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
@@ -106,35 +106,78 @@ public class LogopedistDataService {
 
         Logopedist logopedist = new Logopedist();
 
-        if (gebruikersnaam != null && wachtwoord != null) {
-            // gebruikersnaam of wachtwoord is niet ingevuld
+        // controleren of gebruikersnaam of email wordt gebruikt om in te loggen
+        if (gebruikersnaam.contains("@")) {
+            // email
+            String email = gebruikersnaam;
+            if (!email.equals("") && !wachtwoord.equals("")) {
+                // email of wachtwoord is niet ingevuld
 
-            Cursor cursor = db.query(
-                    "logopedist",
-                    new String[] { "id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord" },
-                    "gebruikersnaam = ?",
-                    new String[] { String.valueOf(gebruikersnaam) },
-                    null,
-                    null,
-                    null,
-                    null);
+                Cursor cursor = db.query(
+                        "logopedist",
+                        new String[]{"id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord"},
+                        "email = ?",
+                        new String[]{String.valueOf(email)},
+                        null,
+                        null,
+                        null,
+                        null);
 
 
-            if (cursor.moveToFirst()) {
-                logopedist = new Logopedist(
-                        cursor.getLong(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5)
-                );
+                if (cursor.moveToFirst()) {
+                    logopedist = new Logopedist(
+                            cursor.getLong(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5)
+                    );
+                }
+                cursor.close();
+
+                if (logopedist.getGebruikersnaam() == null) {
+                    logopedist = null;
+                } else if (!logopedist.getWachtwoord().equals(wachtwoord)) {
+                    // wachtwoord matcht niet met email
+                    logopedist = null;
+                }
             }
-            cursor.close();
+        } else {
+            // gebruikersnaam
 
-            if (!logopedist.getWachtwoord().equals(wachtwoord)) {
-                // wachtwoord matcht niet met gebruikersnaam
-                logopedist = null;
+            if (!gebruikersnaam.equals("") && !wachtwoord.equals("")) {
+                // gebruikersnaam of wachtwoord is niet ingevuld
+
+                Cursor cursor = db.query(
+                        "logopedist",
+                        new String[]{"id", "voornaam", "achternaam", "email", "gebruikersnaam", "wachtwoord"},
+                        "gebruikersnaam = ?",
+                        new String[]{String.valueOf(gebruikersnaam)},
+                        null,
+                        null,
+                        null,
+                        null);
+
+
+                if (cursor.moveToFirst()) {
+                    logopedist = new Logopedist(
+                            cursor.getLong(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5)
+                    );
+                }
+                cursor.close();
+
+                if (logopedist.getGebruikersnaam() == null) {
+                    logopedist = null;
+                } else if (!logopedist.getWachtwoord().equals(wachtwoord)) {
+                    // wachtwoord matcht niet met gebruikersnaam
+                    logopedist = null;
+                }
             }
         }
 
