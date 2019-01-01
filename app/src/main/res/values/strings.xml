@@ -70,6 +70,21 @@
     <string name="login_button">Log in</string>
     <string name="loguit_button">Log uit</string>
 
+    <!-- Registreer -->
+    <string name="registreer_voornaam_label">Voornaam: </string>
+    <string name="registreer_voornaam_placeholder">Maarten</string>
+    <string name="registreer_achternaam_label">Achternaam: </string>
+    <string name="registreer_achternaam_placeholder">Van Lint</string>
+    <string name="registreer_email_label">Email: </string>
+    <string name="registreer_email_placeholder">mvl@test.be</string>
+    <string name="registreer_gebruikersnaam_label">Gebruikersnaam: </string>
+    <string name="registreer_gebruikersnaam_placeholder">MaartenVL</string>
+    <string name="registreer_wachtwoord_label">Wacthwoord: </string>
+    <string name="registreer_wachtwoord_placeholder">wachtwoord</string>
+    <string name="registreer_wachtwoord_bevestiging_label">Bevestig wachtwoord: </string>
+    <string name="registreer_wachtwoord_bevestiging_placeholder">wachtwoord</string>
+    <string name="registreer_button">Registreer</string>
+
     <!-- Laad Patiënt Activity -->
     <string name="laad_patient_mondeling_text">Kies een patiënt waarmee je een oefening gaat doen.</string>
     <string name="buttonVerder">Verder</string>

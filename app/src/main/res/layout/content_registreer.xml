@@ -8,4 +8,159 @@
     tools:context=".Activities.RegistreerActivity"
     tools:showIn="@layout/activity_registreer">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <!-- Voornaam -->
+        <LinearLayout
+            android:id="@+id/registreer_voornaam_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_voornaam_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_voornaam_label" />
+
+            <EditText
+                android:id="@+id/registreer_voornaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_voornaam_placeholder"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Naam -->
+        <LinearLayout
+            android:id="@+id/registreer_achternaam_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_achternaam_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_achternaam_label" />
+
+            <EditText
+                android:id="@+id/registreer_achternaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_achternaam_placeholder"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Email -->
+        <LinearLayout
+            android:id="@+id/registreer_email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_email_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_email_label" />
+
+            <EditText
+                android:id="@+id/registreer_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_email_placeholder"
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+
+        <!-- Gebruikersnaam -->
+        <LinearLayout
+            android:id="@+id/registreer_gebruikersnaam_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_gebruikersnaam_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_gebruikersnaam_label" />
+
+            <EditText
+                android:id="@+id/registreer_gebruikersnaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_gebruikersnaam_placeholder"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Wachtwoord -->
+        <LinearLayout
+            android:id="@+id/registreer_wachtwoord_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_wachtwoord_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_wachtwoord_label" />
+
+            <EditText
+                android:id="@+id/registreer_wachtwoord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_wachtwoord_placeholder"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <!-- Wachtwoord bevestiging -->
+        <LinearLayout
+            android:id="@+id/registreer_wachtwoord_bevestiging_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registreer_wachtwoord_bevestiging_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_wachtwoord_bevestiging_label" />
+
+            <EditText
+                android:id="@+id/registreer_wachtwoord_bevestiging"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registreer_wachtwoord_bevestiging_placeholder"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <!-- Button registreer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/registreer_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registreer_button"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="200dp"
+                android:layout_marginLeft="200dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
