@@ -179,6 +179,9 @@ public class LogopedistDataService {
                     logopedist = null;
                 }
             }
+            else {
+                logopedist = null;
+            }
         }
 
         db.close();

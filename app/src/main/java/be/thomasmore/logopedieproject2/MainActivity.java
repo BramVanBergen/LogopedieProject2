@@ -31,7 +31,18 @@ public class MainActivity extends MenuActivity {
         Button btnLogOut = (Button) findViewById(R.id.logUitButton);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
         intent = new Intent(MainActivity.this, LoginActivity.class);
-        result.setText("Hallo " + prf.getString("gebruikersnaam", null));
+
+        String gebruikersnaam = prf.getString("gebruikersnaam", null);
+
+        if (gebruikersnaam == null) {
+            SharedPreferences.Editor editor = prf.edit();
+            editor.clear();
+            editor.commit();
+            startActivity(intent);
+        }
+
+        result.setText("Hallo " + gebruikersnaam);
+
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

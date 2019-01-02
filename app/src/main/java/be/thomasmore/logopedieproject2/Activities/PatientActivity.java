@@ -1,6 +1,7 @@
 package be.thomasmore.logopedieproject2.Activities;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +28,7 @@ import be.thomasmore.logopedieproject2.DataService.PatientDataService;
 import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DataService.SoortAfasieDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.MainActivity;
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.Models.Score;
@@ -100,8 +103,7 @@ public class PatientActivity extends MenuActivity {
     public void onSubmit() {
         dbP = new PatientDataService(new DatabaseHelper(this));
         Patient patient = new Patient();
-
-        //TODO logopedistID toevoegen
+        Intent intent = new Intent(PatientActivity.this, MainActivity.class);
 
         String voornaam = ((EditText) findViewById(R.id.voornaam)).getText().toString();
         String naam = ((EditText) findViewById(R.id.naam)).getText().toString();
@@ -109,36 +111,19 @@ public class PatientActivity extends MenuActivity {
         Spinner geslacht = findViewById(R.id.geslacht);
         String soortAfasie = ((EditText) findViewById(R.id.afasie)).getText().toString();
 
-
         patient.setVoornaam(voornaam);
         patient.setAchternaam(naam);
         patient.setGeboortedatum(geboortedatum);
         patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
         patient.setSoortAfasie(soortAfasie);
-
+        List<Patient> lijst = dbP.getPatientList();
+        dbP.deletePatient(4);
+        dbP.deletePatient(5);
+        List<Patient> lijst2 = dbP.getPatientList();
         dbP.insertPatient(patient);
 
-    }
-
-    //TODO Chronologische leeftijd weergeven verplaatsen naar oefeningen
-    //
-    //  Bereken Chronologische datum
-    //
-    public String ChronologischeLeeftijd(String geboortedatum, String testdatum) {
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH);
-        String chronologischeLeeftijd = "";
-
-        try {
-            long difference = Math.abs(format.parse(testdatum).getTime() - format.parse(geboortedatum).getTime());
-            long differenceDates = difference / (24 * 60 * 60 * 1000);
-
-            //Convert long to String
-            chronologischeLeeftijd = Long.toString(differenceDates);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return chronologischeLeeftijd;
+        Toast.makeText(getApplicationContext(), "Patient toegevoegd", Toast.LENGTH_SHORT).show();
+        startActivity(intent);
     }
 
     //DATEPICKER GEBOORTEDATUM

@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.putLong("id", id);
             editor.putString("wachtwoord", wachtwoord);
             editor.commit();
+
             Toast.makeText(getApplicationContext(), "Login succesvol!", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         } else {
