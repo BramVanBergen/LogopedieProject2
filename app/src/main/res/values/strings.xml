@@ -63,7 +63,7 @@
     <!-- Login -->
     <string name="tekst_registreer">Nog geen account? </string>
     <string name="button_registreer"><u>Registreer</u></string>
-    <string name="login_gebruikersnaam">Email: </string>
+    <string name="login_gebruikersnaam">Email/gebruikersnaam: </string>
     <string name="login_gebruikersnaam_placeholder">voorbeeld@voorbeeld.be </string>
     <string name="login_wachtwoord">Wachtwoord: </string>
     <string name="login_wachtwoord_placeholder">Wachtwoord </string>

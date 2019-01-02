@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.activity_nieuwe_patient:
                 startActivity(new Intent(this, PatientActivity.class));
                 return true;
-            case R.id.activity_opnames:
+            case R.id.activity_historiek:
                 startActivity(new Intent(this, HistoriekActivity.class));
                 return true;
             case R.id.activity_login:

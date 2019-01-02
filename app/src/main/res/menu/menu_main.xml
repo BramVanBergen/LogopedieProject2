@@ -13,7 +13,7 @@
         android:title="@string/title_activity_schriftelijk"
         app:showAsAction="never" />
     <item
-        android:id="@+id/activity_opnames"
+        android:id="@+id/activity_historiek"
         android:orderInCategory="100"
         android:title="@string/title_activity_opnames"
         app:showAsAction="never" />
