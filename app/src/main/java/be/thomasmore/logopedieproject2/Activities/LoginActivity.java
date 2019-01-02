@@ -100,5 +100,10 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Foutieve gegevens", Toast.LENGTH_SHORT).show();
         }
+
+
+
+
+
     }
 }

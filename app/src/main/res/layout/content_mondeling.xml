@@ -78,7 +78,8 @@
             android:layout_height="wrap_content"
             android:text="@string/ButtonSubmit"
             android:layout_gravity="center_horizontal"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:onClick="onSubmitMondeling"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
