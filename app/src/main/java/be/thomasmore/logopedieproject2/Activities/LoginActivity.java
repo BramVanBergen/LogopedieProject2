@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         String gebruikersnaamLogin = ((EditText) findViewById(R.id.gebruikersnaam)).getText().toString();
         String wachtwoordLogin = ((EditText) findViewById(R.id.wachtwoord)).getText().toString();
 
-
         if (dbL.login(gebruikersnaamLogin, wachtwoordLogin) != null) {
             String gebruikersnaam = dbL.login(gebruikersnaamLogin, wachtwoordLogin).getGebruikersnaam();
             String achternaam = dbL.login(gebruikersnaamLogin, wachtwoordLogin).getAchternaam();

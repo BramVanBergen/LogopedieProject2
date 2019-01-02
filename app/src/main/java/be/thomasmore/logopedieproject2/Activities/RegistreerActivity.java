@@ -1,5 +1,7 @@
 package be.thomasmore.logopedieproject2.Activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import be.thomasmore.logopedieproject2.DataService.LogopedistDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.MainActivity;
 import be.thomasmore.logopedieproject2.Models.Logopedist;
 import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.R;
@@ -23,6 +26,8 @@ import be.thomasmore.logopedieproject2.R;
 public class RegistreerActivity extends AppCompatActivity {
 
     LogopedistDataService dbL;
+    SharedPreferences pref;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,9 @@ public class RegistreerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Registreer");
+
+        pref = getSharedPreferences("user_details", MODE_PRIVATE);
+        intent = new Intent(RegistreerActivity.this, MainActivity.class);
 
         //BUTTON SUBMIT ONCLICK
         Button btnSubmit = (Button) findViewById(R.id.registreer_button);
@@ -46,7 +54,7 @@ public class RegistreerActivity extends AppCompatActivity {
     public void registreer() {
         dbL = new LogopedistDataService(new DatabaseHelper(this));
 
-        List<Logopedist> logopedisten = new ArrayList<>();
+        List<Logopedist> logopedisten = dbL.getLogopedistList();
         boolean gebruikersnaamInGebruik = false, emailInGebruik = false;
         Logopedist logopedist = new Logopedist();
 
@@ -56,8 +64,6 @@ public class RegistreerActivity extends AppCompatActivity {
         String gebruikersnaam = ((EditText) findViewById(R.id.registreer_gebruikersnaam)).getText().toString();
         String wachtwoord = ((EditText) findViewById(R.id.registreer_wachtwoord)).getText().toString();
         String bevestigwachtwoord = ((EditText) findViewById(R.id.registreer_wachtwoord_bevestiging)).getText().toString();
-
-        logopedisten = dbL.getLogopedistList();
 
         for (int i = 0; i < logopedisten.size(); i++) {
             if (logopedisten.get(i).getGebruikersnaam().equals(gebruikersnaam)) {
@@ -70,9 +76,9 @@ public class RegistreerActivity extends AppCompatActivity {
 
         if (gebruikersnaamInGebruik && emailInGebruik) {
             Toast.makeText(getApplicationContext(), "Email en gebruikersnaam zijn al in gebruik", Toast.LENGTH_SHORT).show();
-        } else if (gebruikersnaamInGebruik && !emailInGebruik) {
+        } else if (gebruikersnaamInGebruik) {
             Toast.makeText(getApplicationContext(), "Gebruikersnaam is al in gebruik", Toast.LENGTH_SHORT).show();
-        } else if (!gebruikersnaamInGebruik && emailInGebruik) {
+        } else if (emailInGebruik) {
             Toast.makeText(getApplicationContext(), "Email is al in gebruik", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -85,11 +91,22 @@ public class RegistreerActivity extends AppCompatActivity {
                 logopedist.setGebruikersnaam(gebruikersnaam);
                 logopedist.setWachtwoord(wachtwoord);
 
-                dbL.insertLogopedist(logopedist);
+                Long id = dbL.insertLogopedist(logopedist);
 
-                //TODO VERWIJDEREN, ENKEL VOOR TE TESTEN
-                List<Logopedist> logopedistentest = dbL.getLogopedistList();
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("gebruikersnaam", logopedist.getGebruikersnaam());
+                editor.putString("email", logopedist.getEmail());
+                editor.putString("achternaam", logopedist.getAchternaam());
+                editor.putString("voornaam", logopedist.getVoornaam());
+                editor.putLong("id", id);
+                editor.putString("wachtwoord", logopedist.getWachtwoord());
+                editor.commit();
+                Toast.makeText(getApplicationContext(), "Login succesvol!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                dbL = new LogopedistDataService(new DatabaseHelper(this));
 
+                //TODO VERWIJDEREN
+                List logopedistentest = dbL.getLogopedistList();
             }
         }
     }
