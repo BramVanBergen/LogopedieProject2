@@ -2,6 +2,7 @@ package be.thomasmore.logopedieproject2.Activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -14,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,13 +26,22 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
+import be.thomasmore.logopedieproject2.DataService.AantalWoordenDataService;
 import be.thomasmore.logopedieproject2.DataService.PatientDataService;
+import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.MainActivity;
 import be.thomasmore.logopedieproject2.MenuActivity;
+import be.thomasmore.logopedieproject2.Models.AantalWoorden;
 import be.thomasmore.logopedieproject2.Models.Patient;
+import be.thomasmore.logopedieproject2.Models.Score;
+import be.thomasmore.logopedieproject2.OefeningenHelper;
 import be.thomasmore.logopedieproject2.R;
 
 public class MondelingActivity extends MenuActivity {
+    OefeningenHelper oefeningenHelper = new OefeningenHelper(this);
+    ScoreDataService dbScore = new ScoreDataService(new DatabaseHelper(this));
+    AantalWoordenDataService dbAantalWoorden = new AantalWoordenDataService(new DatabaseHelper(this));
     PatientDataService dbPatient = new PatientDataService(new DatabaseHelper(this));
 
     Button buttonStartOpname, buttonStopOpname;
@@ -42,6 +53,10 @@ public class MondelingActivity extends MenuActivity {
     int length = 0;
 
     Patient patient;
+    int productiviteitScore, productiviteitAantalWoorden, efficientieScore, efficientieAantalWoorden, substitutiegedragScore, substitutiegedragAantalWoorden, coherentieScore, coherentieAantalWoorden;
+    private String mondelingeBeschrijving;
+    private String[] woorden;
+    String audioFilePath;
 
     final int REQUEST_PERMISSION_CODE = 1000;
 
@@ -117,6 +132,66 @@ public class MondelingActivity extends MenuActivity {
         return patient;
     }
 
+    public void onSubmitMondeling(View v) {
+        // de beschrijving ophalen
+        EditText beschrijving = (EditText) findViewById(R.id.beschrijving_mondelinge_plaat);
+        mondelingeBeschrijving = beschrijving.getText().toString();
+
+        // string opsplitsen in array van woorden
+        woorden = mondelingeBeschrijving.split("\\s+");
+
+        // bereken de verschillende soorten scores
+        berekenScores();
+
+        // redirect naar homepage
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void berekenScores() {
+        productiviteitScore = oefeningenHelper.berekenProductiviteitScore(woorden);
+        productiviteitAantalWoorden = oefeningenHelper.berekenProductiviteitScore(woorden);
+
+        efficientieScore = oefeningenHelper.berekenEfficientieScore(woorden);
+        efficientieAantalWoorden = oefeningenHelper.berekenEfficientieAantalWoorden(woorden);
+
+        substitutiegedragScore = oefeningenHelper.berekenSubstitutiegedragScore(woorden);
+        substitutiegedragAantalWoorden = oefeningenHelper.berekenSubstitutiegedragAantalWoorden(woorden);
+
+        coherentieScore = oefeningenHelper.berekenCoherentieScore(woorden);
+        coherentieAantalWoorden = oefeningenHelper.berekenCoherentieScore(woorden);
+
+        insertScores();
+    }
+
+    private void insertScores() {
+        Date datumVandaag = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("dd-MM-yyyy HH:mm");
+        String datumVandaagString = sdf.format(datumVandaag);
+
+        Score score = new Score();
+        score.setProductiviteit(productiviteitScore);
+        score.setEfficientie(efficientieScore);
+        score.setSubstitutiegedrag(substitutiegedragScore);
+        score.setCoherentie(coherentieScore);
+        score.setDatum(datumVandaagString);
+        score.setAudioFile(audioFilePath);
+        score.setPatientId(patient.getId());
+
+        dbScore.insertScore(score);
+
+        AantalWoorden aantalWoorden = new AantalWoorden();
+        aantalWoorden.setProductiviteit(productiviteitAantalWoorden);
+        aantalWoorden.setEfficientie(efficientieAantalWoorden);
+        aantalWoorden.setSubstitutiegedrag(substitutiegedragAantalWoorden);
+        aantalWoorden.setCoherentie(coherentieAantalWoorden);
+        aantalWoorden.setDatum(datumVandaagString);
+        aantalWoorden.setPatientId(patient.getId());
+
+        dbAantalWoorden.insertAantalWoorden(aantalWoorden);
+    }
+
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -156,6 +231,7 @@ public class MondelingActivity extends MenuActivity {
             }
 
             pathsave = folder + "/" + datumVandaag + "_" + tijdUur + "u" + tijdMin + "_" + patient.getVoornaam() + patient.getAchternaam() + "_" + patient.getId() + "_logopedieSessie.mp3";
+            audioFilePath = "/" + datumVandaag + "_" + tijdUur + "u" + tijdMin + "_" + patient.getVoornaam() + patient.getAchternaam() + "_" + patient.getId() + "_logopedieSessie.mp3";
 
             setupMediaRecorder();
             try {

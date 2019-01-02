@@ -1,5 +1,6 @@
 package be.thomasmore.logopedieproject2.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,6 +19,7 @@ import be.thomasmore.logopedieproject2.DataService.PatientDataService;
 import be.thomasmore.logopedieproject2.DataService.ScoreDataService;
 import be.thomasmore.logopedieproject2.DataService.SubstitutiegedragDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
+import be.thomasmore.logopedieproject2.MainActivity;
 import be.thomasmore.logopedieproject2.MenuActivity;
 import be.thomasmore.logopedieproject2.Models.AantalWoorden;
 import be.thomasmore.logopedieproject2.Models.Coherentie;
@@ -59,6 +61,7 @@ public class SchriftelijkActivity extends MenuActivity {
 
         setSituatieplaat();
     }
+
     public Patient getPatient(Long patientId) {
         patient = dbPatient.getPatient(patientId);
 
@@ -81,6 +84,10 @@ public class SchriftelijkActivity extends MenuActivity {
 
         // bereken de verschillende soorten scores
         berekenScores();
+
+        // redirect naar homepage
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void berekenScores() {
