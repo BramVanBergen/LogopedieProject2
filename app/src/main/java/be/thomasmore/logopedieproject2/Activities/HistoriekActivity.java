@@ -36,9 +36,13 @@ public class HistoriekActivity extends MenuActivity {
     }
 
     private void getOpnames() {
-        String path = this.getFilesDir() + "/Audio/Logopedie/";
-        File directory = new File(path);
-        File[] files = directory.listFiles();
+        File folder = new File(this.getFilesDir() +
+                File.separator + "Audio/Logopedie/");
+
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        File[] files = folder.listFiles();
 
         if (files != null) {
             for (int i = 0; i < files.length; i++) {

@@ -1,175 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activities.PatientActivity"
-    tools:showIn="@layout/activity_patient">
+    tools:showIn="@layout/activity_patient"
+    android:padding="30dp">
 
-    <LinearLayout
+
+    <!-- Voornaam -->
+    <TableRow
+        android:id="@+id/voornaamLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <!-- Voornaam -->
-        <LinearLayout
-            android:id="@+id/voornaamLayout"
-            android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/voornaamText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/Voornaamlabel" />
 
-            <TextView
-                android:id="@+id/voornaamText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Voornaamlabel" />
-
-            <EditText
-                android:id="@+id/voornaam"
-                android:inputType="text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/Voornaamplaceholder" />
-        </LinearLayout>
-
-        <!-- Naam -->
-        <LinearLayout
-            android:id="@+id/naamLayout"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/voornaam"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="@string/Voornaamplaceholder"
+            android:inputType="text" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/naamText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Naamlabel" />
+    <!-- Naam -->
+    <TableRow
+        android:id="@+id/naamLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/naam"
-                android:inputType="text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/Naamplaceholder" />
-        </LinearLayout>
-
-        <!-- Geboortedatum -->
-        <LinearLayout
-            android:id="@+id/geboortedatumLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/naamText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/Naamlabel" />
 
-            <TextView
-                android:id="@+id/geboortedatumText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Geboortedatumlabel" />
-
-            <EditText
-                android:id="@+id/geboortedatum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:hint="@string/Geboortedatumplaceholder"/>
-        </LinearLayout>
-
-        <!-- Testdatum -->
-        <LinearLayout
-            android:id="@+id/testdatumLayout"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/naam"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="@string/Naamplaceholder"
+            android:inputType="text" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/testdatumText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Testdatumlabel" />
+    <!-- Geboortedatum -->
+    <TableRow
+        android:id="@+id/geboortedatumLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/testdatum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:hint="@string/Testdatumplaceholder" />
-
-        </LinearLayout>
-
-        <!--TODO Verwijderen indien niet gebruikt-->
-        <!-- Chronologische leeftijd
-        <LinearLayout
-            android:id="@+id/chronologischeLeeftijdLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/geboortedatumText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/Geboortedatumlabel" />
 
-            <TextView
-                android:id="@+id/chronologischeLeeftijdText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ChronologischeLeeftijdlabel" />
-
-            <EditText
-                android:id="@+id/chronologischeLeeftijd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/ChronologischeLeeftijdplaceholder" />
-        </LinearLayout>-->
-
-        <!-- Geslacht -->
-        <LinearLayout
-            android:id="@+id/geslachtLayout"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/geboortedatum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/Geboortedatumplaceholder" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/geslachtText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Geslachtlabel" />
+    <!-- Testdatum -->
+    <TableRow
+        android:id="@+id/testdatumLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/geslacht"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/GeslachtArray"
-                android:prompt="@string/GeslachtPrompt" />
-        </LinearLayout>
-
-        <!-- Afasie -->
-        <LinearLayout
-            android:id="@+id/afasieLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/testdatumText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@string/Testdatumlabel" />
 
-            <TextView
-                android:id="@+id/afasieText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/SoortAfasielabel" />
+        <EditText
+            android:id="@+id/testdatum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/Testdatumplaceholder" />
 
-            <EditText
-                android:id="@+id/afasie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/SoortAfasiePlaceholder" />
-        </LinearLayout>
+    </TableRow>
+
+    <!-- Geslacht -->
+    <TableRow
+        android:id="@+id/geslachtLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/geslachtText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="@string/Geslachtlabel" />
+
+        <Spinner
+            android:id="@+id/geslacht"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/GeslachtArray"
+            android:prompt="@string/GeslachtPrompt" />
+    </TableRow>
+
+    <!-- Afasie -->
+    <TableRow
+        android:id="@+id/afasieLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/afasieText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/SoortAfasielabel" />
+
+        <EditText
+            android:id="@+id/afasie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/SoortAfasiePlaceholder" />
+    </TableRow>
 
         <Button
             android:id="@+id/buttonsubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ButtonSubmit"/>
-    </LinearLayout>
+            android:text="@string/ButtonSubmit"
+            android:layout_marginTop="100dp"/>
 
-</android.support.constraint.ConstraintLayout>
+
+</TableLayout>
