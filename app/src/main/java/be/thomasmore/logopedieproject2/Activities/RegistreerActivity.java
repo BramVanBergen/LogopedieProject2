@@ -17,6 +17,7 @@ import java.util.List;
 import be.thomasmore.logopedieproject2.DataService.LogopedistDataService;
 import be.thomasmore.logopedieproject2.DatabaseHelper;
 import be.thomasmore.logopedieproject2.Models.Logopedist;
+import be.thomasmore.logopedieproject2.Models.Patient;
 import be.thomasmore.logopedieproject2.R;
 
 public class RegistreerActivity extends AppCompatActivity {
@@ -58,7 +59,7 @@ public class RegistreerActivity extends AppCompatActivity {
 
         logopedisten = dbL.getLogopedistList();
 
-        for (int i = 0; i <= logopedisten.size(); i++) {
+        for (int i = 0; i < logopedisten.size(); i++) {
             if (logopedisten.get(i).getGebruikersnaam().equals(gebruikersnaam)) {
                 gebruikersnaamInGebruik = true;
             }
@@ -73,16 +74,23 @@ public class RegistreerActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Gebruikersnaam is al in gebruik", Toast.LENGTH_SHORT).show();
         } else if (!gebruikersnaamInGebruik && emailInGebruik) {
             Toast.makeText(getApplicationContext(), "Email is al in gebruik", Toast.LENGTH_SHORT).show();
-        } else if (!wachtwoord.equals(bevestigwachtwoord)) {
-            Toast.makeText(getApplicationContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_SHORT).show();
-        } else {
-            logopedist.setVoornaam(voornaam);
-            logopedist.setAchternaam(achternaam);
-            logopedist.setEmail(email);
-            logopedist.setGebruikersnaam(gebruikersnaam);
-            logopedist.setWachtwoord(wachtwoord);
+        }
+        else {
+            if (!wachtwoord.equals(bevestigwachtwoord)) {
+                Toast.makeText(getApplicationContext(), "Wachtwoorden komen niet overeen", Toast.LENGTH_SHORT).show();
+            } else {
+                logopedist.setVoornaam(voornaam);
+                logopedist.setAchternaam(achternaam);
+                logopedist.setEmail(email);
+                logopedist.setGebruikersnaam(gebruikersnaam);
+                logopedist.setWachtwoord(wachtwoord);
 
-            dbL.insertLogopedist(logopedist);
+                dbL.insertLogopedist(logopedist);
+
+                //TODO VERWIJDEREN, ENKEL VOOR TE TESTEN
+                List<Logopedist> logopedistentest = dbL.getLogopedistList();
+
+            }
         }
     }
 }

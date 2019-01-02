@@ -118,8 +118,6 @@ public class PatientActivity extends MenuActivity {
 
         dbP.insertPatient(patient);
 
-        //TODO VERWIJDEREN, ENKEL VOOR TESTEN
-        List<Patient> patienten = dbP.getPatientList();
     }
 
     //TODO Chronologische leeftijd weergeven verplaatsen naar oefeningen
