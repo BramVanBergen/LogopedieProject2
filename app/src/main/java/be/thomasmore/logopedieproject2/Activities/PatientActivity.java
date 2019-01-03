@@ -98,10 +98,6 @@ public class PatientActivity extends MenuActivity {
         patient.setGeboortedatum(geboortedatum);
         patient.setGeslacht(geslacht.getItemAtPosition(geslacht.getSelectedItemPosition()).toString());
         patient.setSoortAfasie(soortAfasie);
-        List<Patient> lijst = dbP.getPatientList();
-        dbP.deletePatient(4);
-        dbP.deletePatient(5);
-        List<Patient> lijst2 = dbP.getPatientList();
         dbP.insertPatient(patient);
 
         Toast.makeText(getApplicationContext(), "Patient toegevoegd", Toast.LENGTH_SHORT).show();
