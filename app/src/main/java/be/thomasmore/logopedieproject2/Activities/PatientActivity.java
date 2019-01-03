@@ -69,24 +69,6 @@ public class PatientActivity extends MenuActivity {
             }
         });
 
-        //DATEPICKER TESTDATUM + SET CHRONOLOGISCHE LEEFTIJD
-        EditText testdatum = (EditText) findViewById(R.id.testdatum);
-        testdatum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialogTestdatum();
-            }
-        });
-
-        testdatum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    showDatePickerDialogTestdatum();
-                }
-            }
-        });
-
         //BUTTON SUBMIT ONCLICK
         Button btnSubmit = (Button) findViewById(R.id.buttonsubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -140,29 +122,7 @@ public class PatientActivity extends MenuActivity {
             day = newDay;
 
             TextView textViewGeboortedatum = (TextView) findViewById(R.id.geboortedatum);
-            textViewGeboortedatum.setText(day + "/" + (month + 1) + "/" + year);
-
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH);
-            day = calendar.get(Calendar.DATE);
-        }
-    };
-
-    //DATEPICKER TESTDATUM
-    public void showDatePickerDialogTestdatum() {
-        DatePickerDialog datepicker = new DatePickerDialog(this, mDateSetListenertestdatum, year, month, day);
-        datepicker.setTitle(getString(R.string.Testdatumlabel));
-        datepicker.show();
-    }
-
-    private DatePickerDialog.OnDateSetListener mDateSetListenertestdatum = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int newYear, int newMonth, int newDay) {
-            year = newYear;
-            month = newMonth;
-            day = newDay;
-
-            TextView textViewTestdatum = (TextView) findViewById(R.id.testdatum);
-            textViewTestdatum.setText(day + "/" + (month + 1) + "/" + year);
+            textViewGeboortedatum.setText(day + "-" + (month + 1) + "-" + year);
 
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);

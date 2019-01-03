@@ -25,7 +25,7 @@
 
     <!-- Geboortedatum -->
     <string name="Geboortedatumlabel">Geboortedatum: </string>
-    <string name="Geboortedatumplaceholder">27/08/1998</string>
+    <string name="Geboortedatumplaceholder">27–08–1998</string>
 
     <!-- Testdatum -->
     <string name="Testdatumlabel">Testdatum: </string>

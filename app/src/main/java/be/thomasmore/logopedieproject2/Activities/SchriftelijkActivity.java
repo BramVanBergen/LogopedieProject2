@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -75,6 +76,14 @@ public class SchriftelijkActivity extends MenuActivity {
     }
 
     public void onSubmit(View v) {
+        // folder aanmaken voor patiënt
+        File folder = new File(this.getFilesDir() +
+                File.separator + "Audio/Logopedie/" + patient.getId());
+
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
         // de beschrijving ophalen
         EditText beschrijving = (EditText) findViewById(R.id.beschrijving_schriftelijke_plaat);
         schriftelijkeBeschrijving = beschrijving.getText().toString();
