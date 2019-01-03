@@ -65,7 +65,9 @@
                     <TextView
                         android:id="@+id/content_historiek_detail_productiviteit"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"/>
                 </TableRow>
                 <TableRow
                     android:paddingBottom="15dp">
@@ -76,7 +78,9 @@
                     <TextView
                         android:id="@+id/content_historiek_detail_substitutiegedrag"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"/>
                 </TableRow>
                 <TableRow
                     android:paddingBottom="15dp">
@@ -87,7 +91,9 @@
                     <TextView
                         android:id="@+id/content_historiek_detail_coherentie"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingStart="15dp"/>
                 </TableRow>
             </TableLayout>
         </RelativeLayout>
